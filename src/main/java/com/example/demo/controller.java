@@ -8,10 +8,18 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class controller {
 
-	
+	// indexページの表示
 	@RequestMapping(value="/", method=RequestMethod.GET)
-public ModelAndView indexGet(ModelAndView mv) {
-	mv.setViewName("index"); 
-	return mv;
-}
+	public ModelAndView indexGet(ModelAndView mv) {
+		mv.setViewName("index"); 
+		return mv;
+	}
+
+	// entryページの表示
+	@RequestMapping(value="/entry", method=RequestMethod.GET)
+	public ModelAndView entryGet(ModelAndView mv) {
+		mv.setViewName("entry"); 
+		return mv;
+	}
+	
 }
