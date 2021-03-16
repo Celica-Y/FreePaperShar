@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html class="no-js">
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>ぺっふり〜 会員登録</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="フリーパーパーの置き場所を見つけて共有するサイトです。" />
+	<meta name="keywords" content="ぺっふり〜、ぺっふりー、フリーペーパー、場所、置き場所、フリーペーパーの場所" />
+	<meta name="author" content="Made by Celica, template from FreeHTML5.co" />
+
+  	<!-- 
+	//////////////////////////////////////////////////////
+
+	FREE HTML5 TEMPLATE 
+	DESIGNED & DEVELOPED by FreeHTML5.co
+		
+	Website: 		http://freehtml5.co/
+	Email: 			info@freehtml5.co
+	Twitter: 		http://twitter.com/fh5co
+	Facebook: 		https://www.facebook.com/fh5co
+
+	//////////////////////////////////////////////////////
+	-->
+
+  	<!-- Facebook and Twitter integration -->
+	<meta property="og:title" content=""/>
+	<meta property="og:image" content=""/>
+	<meta property="og:url" content=""/>
+	<meta property="og:site_name" content=""/>
+	<meta property="og:description" content=""/>
+	<meta name="twitter:title" content="" />
+	<meta name="twitter:image" content="" />
+	<meta name="twitter:url" content="" />
+	<meta name="twitter:card" content="" />
+
+	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+	<link rel="shortcut icon" href="src/main/resources/static/images/favicon.ico">
+
+	<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
+	
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="src/main/resources/static/css/animate.css" 
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="src/main/resources/static/css/icomoon.css">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="src/main/resources/static/css/bootstrap.css">
+	<!-- Flexslider  -->
+	<link rel="stylesheet" href="src/main/resources/static/css/flexslider.css">
+	<!-- Theme style  -->
+	<link rel="stylesheet" href="/css/style.css"　th:href="@{/css/style.css}">
+	<!-- croppie -->
+	<link rel="stylesheet" href="src/main/resources/static/node_modules/croppie/croppie.css" />
+
+	<!-- Modernizr JS -->
+	<script src="src/main/resources/static/js/modernizr-2.6.2.min.js"></script>
+	<!-- jquery -->
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<!-- croppie crop js-->
+	<script src="src/main/resources/static/js/crop.js"></script>
+	
+	
+
+    </head>
+    <body>
+    <div id="fh5co-page">
+		<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
+		<aside id="fh5co-aside" role="complementary" class="border js-fullheight">
+<!-- 左側固定メニュー -->
+			<h1 id="fh5co-logo">
+				<a href="index.html">
+				<img class="logo-img" src="src/main/resources/static/images/ロゴ入りデミグラス.png" alt="ロゴ"></a>
+			</h1>
+			<nav id="fh5co-main-menu" role="navigation">
+				<ul>
+					<li class="fh5co-active"><a href="index.html">ホーム</a></li>
+					<li><a href="blog.html">検索</a></li>
+					<li><a href="portfolio.html">マイページ</a></li>
+					<!--ログイン時は「ログアウト」へ変更-->
+					<li><a href="index.html">ログイン</a></li>
+				</ul>
+
+			</nav>
+
+			<div class="fh5co-footer">
+				<p><small>&copy; 2016 Blend Free HTML5. All Rights Reserved.</span> <span>Designed by <a href="http://freehtml5.co/" target="_blank">FreeHTML5.co</a> </span> <span>Images: <a href="https://unsplash.com/" target="_blank">Unsplash</a></span></small></p>
+			</div>
+
+		</aside>
+
+        <div id="fh5co-main">
+            <div class="fh5co-narrow-content animate-box" data-animate-effect="fadeInLeft">
+				
+				<div class="row">
+					<div class="col-md-4">
+						<h2>会員登録<br>（入力ページ）</h2>
+					</div>
+                    <hr>
+				</div>
+
+				<form class="action" id="form" method="POST">
+					<div class="col-md-12">
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<p><i class="icon-head"> ユーザー名（文字以内）</p></i>
+									<input type="text" class="form-control" value="冒険者" name="userName" id="name">
+								</div>
+								<div class="form-group">
+									<p><i class="icon-mail5"> メールアドレス 必須</p></i>
+									<input type="text" class="form-control" placeholder="メールアドレス" name="Email">
+								</div>
+								<div class="form-group">
+									<p><i class="icon-key"> パスワード（文字以内） 必須</p></i>
+									<input type="password" id="password" class="password form-control" placeholder="パスワード" name="password">
+									<input type="checkbox" id="js-passcheck"/>
+									<label for="js-passcheck">パスワードを表示</label>
+								</div>
+							</div>	
+
+							<div class="col-md-6">
+											
+								<div class="form-group">
+                                    <p><i class="icon-photo"> プロフィール画像</p></i>
+								
+									<div class="form-group">
+										<label class="btn btn-primary btn-md butan">画像を選択
+											<input style="display: none;" class="input-tag" type="file" id="upload" accept="image/*"/>
+										</label>
+										<div>
+											<img id="upload-view" >
+										</div>
+
+										<div id="cropImagePop">
+											<div class="crop-content">
+												<div class="crop"></div>
+													<input type="button" class="modal-btn-cancel btn btn-primary btn-md" value="キャンセル">
+													<input type="button" class="upload-result btn btn-primary btn-md" value="決定" name="image">
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+								
+							<div class="col-md-6">
+								<div class="form-group">
+									<input type="submit" class="btn btn-primary btn-md" value="登録">
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+        </div>
+    </div>
+
+    <!-- jQuery -->
+	<script src="src/main/resources/static/js/jquery.min.js"></script>
+	<!-- jQuery Easing -->
+	<!-- <script src="js/jquery.easing.1.3.js"></script> -->
+	<!-- Bootstrap -->
+	<script src="src/main/resources/static/js/bootstrap.min.js"></script>
+	<!-- Waypoints -->
+	<script src="src/main/resources/static/js/jquery.waypoints.min.js"></script>
+
+	
+	<!-- jquery.validate -->
+	<script src="src/main/resources/static/node_modules/jquery-validation/dist/jquery.validate.js"></script>
+	<!-- MAIN JS -->
+	<script src="src/main/resources/static/js/main.js"></script>
+	<!-- croppie Js-->
+	<script src="src/main/resources/static/node_modules/croppie/croppie.js"></script>
+	
+
+
+    </body>
+</html>
