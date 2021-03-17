@@ -21,5 +21,12 @@ public class controller {
 		mv.setViewName("entry"); 
 		return mv;
 	}
+
+	// ログインページの表示
+	@RequestMapping(value="/login", method=RequestMethod.GET)
+	public ModelAndView loginGet(ModelAndView mv) {
+		mv.setViewName("login"); 
+		return mv;
+	}
 	
 }

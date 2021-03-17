@@ -3,7 +3,7 @@
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ぺっふり〜 会員登録</title>
+	<title>ぺっふり〜 ログイン</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="フリーパーパーの置き場所を見つけて共有するサイトです。" />
 	<meta name="keywords" content="ぺっふり〜、ぺっふりー、フリーペーパー、場所、置き場所、フリーペーパーの場所" />
@@ -40,15 +40,15 @@
 	<link th:href="@{https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700}" rel="stylesheet">
 	
 	<!-- Animate.css -->
-	<link rel="stylesheet" type="text/css" th:href="@{css/animate.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/animate.css}">
 	<!-- Icomoon Icon Fonts-->
-	<link rel="stylesheet" type="text/css" th:href="@{css/icomoon.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/icomoon.css}">
 	<!-- Bootstrap  -->
-	<link rel="stylesheet" type="text/css" th:href="@{css/bootstrap.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}">
 	<!-- Flexslider  -->
-	<link rel="stylesheet" type="text/css" th:href="@{css/flexslider.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{c/ss/flexslider.css}">
 	<!-- Theme style  -->
-	<link rel="stylesheet" type="text/css" th:href="@{css/style.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
 	<!-- croppie -->
 	<link rel="stylesheet" type="text/css" th:href="@{/node_modules/croppie/croppie.css}" />
 
@@ -92,60 +92,31 @@
 				
 				<div class="row">
 					<div class="col-md-4">
-						<h2>会員登録<br>（入力ページ）</h2>
+						<h2>ログイン</h2>
 					</div>
                     <hr>
 				</div>
 
 				<form class="action" id="form" method="POST">
 					<div class="col-md-12">
-						<div class="row">
+						<div class="login-group">
 							<div class="col-md-6">
 								<div class="form-group">
-									<p><i class="icon-head"> ユーザー名（文字以内）</p></i>
-									<input type="text" class="form-control" value="冒険者" name="userName" id="name">
-								</div>
-								<div class="form-group">
-									<p><i class="icon-mail5"> メールアドレス 必須</p></i>
+									<p><i class="icon-mail5"> メールアドレス </p></i>
 									<input type="text" class="form-control" placeholder="メールアドレス" name="Email">
 								</div>
 								<div class="form-group">
-									<p><i class="icon-key"> パスワード（文字以内） 必須</p></i>
+									<p><i class="icon-key"> パスワード </p></i>
 									<input type="password" id="password" class="password form-control" placeholder="パスワード" name="password">
 									<input type="checkbox" id="js-passcheck"/>
 									<label for="js-passcheck">パスワードを表示</label>
 								</div>
+								<div class="form-group leftBtn">
+									<small>会員登録がお済みでない方は<a href="/entry">こちら</a></small>
+									<input type="submit" class="btn btn-primary btn-md" value="ログイン">
+								</div>
 							</div>	
 
-							<div class="col-md-6">
-											
-								<div class="form-group">
-                                    <p><i class="icon-photo"> プロフィール画像</p></i>
-								
-									<div class="form-group">
-										<label class="btn btn-primary btn-md butan">画像を選択
-											<input style="display: none;" class="input-tag" type="file" id="upload" accept="image/*"/>
-										</label>
-										<div>
-											<img id="upload-view" >
-										</div>
-
-										<div id="cropImagePop">
-											<div class="crop-content">
-												<div class="crop"></div>
-													<input type="button" class="modal-btn-cancel btn btn-primary btn-md" value="キャンセル">
-													<input type="button" class="upload-result btn btn-primary btn-md" value="決定" name="image">
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-								
-							<div class="col-md-6">
-								<div class="form-group">
-									<input type="submit" class="btn btn-primary btn-md" value="登録">
-								</div>
-							</div>
 						</div>
 					</div>
 				</form>

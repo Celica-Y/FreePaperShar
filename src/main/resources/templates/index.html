@@ -38,7 +38,7 @@
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 	<link rel="shortcut icon" th:src="@{/favicon.ico}">
 
-	<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
+	<link th:href="@{https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700}" rel="stylesheet">
 	
 	<!-- Animate.css -->
 	<link rel="stylesheet" type="text/css" th:href="@{css/animate.css}">
@@ -63,16 +63,16 @@
 		<aside id="fh5co-aside" role="complementary" class="border js-fullheight">
 
 			<h1 id="fh5co-logo">
-				<a href="index.html">
+				<a href="/">
 				<img class="logo-img" th:src="@{images/ロゴ入りデミグラス.png}" alt="ロゴ"></a>
 			</h1>
 			<nav id="fh5co-main-menu" role="navigation">
 				<ul>
-					<li class="fh5co-active"><a href="index.html">ホーム</a></li>
+					<li class="fh5co-active"><a href="/">ホーム</a></li>
 					<li><a href="blog.html">検索</a></li>
 					<li><a href="portfolio.html">マイページ</a></li>
 					<!--ログイン時は「ログアウト」へ変更-->
-					<li><a href="about.html">ログイン</a></li>
+					<li><a href="/login">ログイン</a></li>
 				</ul>
 			</nav>
 

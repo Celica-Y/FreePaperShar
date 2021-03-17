@@ -1235,9 +1235,17 @@ body.offcanvas #fh5co-main, body.offcanvas .fh5co-nav-toggle {
   opacity: 0;
 }
 
-
 /* 入力フォームエラー表示 */
 p.error { 
   color: red 
+}
+
+/* ログインフォーム */
+.login-group{
+  display: grid;
+  place-items: center;
+}
+.leftBtn{
+  text-align: right;
 }
 /*# sourceMappingURL=style.css.map */

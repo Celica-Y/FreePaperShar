@@ -17,10 +17,12 @@ $(function () {
 
       messages: {
           Email: {
-              email: '有効なメールアドレスを入力してください'
+            required: 'メールアドレスを入力してください',
+            email: '有効なメールアドレスを入力してください'
           },
           password: {
-              minlength: 'パスワードは6文字以上で入力してください'
+            required:　'パスワードを入力してください',
+            minlength: 'パスワードは6文字以上で入力してください'
           }
       },
 
