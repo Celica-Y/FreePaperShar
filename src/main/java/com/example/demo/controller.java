@@ -28,5 +28,12 @@ public class controller {
 		mv.setViewName("login"); 
 		return mv;
 	}
+
+	// 検索ページの表示
+	@RequestMapping(value="/search", method=RequestMethod.GET)
+	public ModelAndView referenceGet(ModelAndView mv) {
+		mv.setViewName("search"); 
+		return mv;
+	}
 	
 }

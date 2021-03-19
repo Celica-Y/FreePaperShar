@@ -296,6 +296,11 @@ img.logo-img {
     padding: 4em 1em;
   }
 }
+.profile-img-small{
+  height: 15vh;
+  border: 0.5px solid;
+  border-radius: 50%;
+}
 /* 写真あり会員登録ボタン */
 #fh5co-hero{
   min-height: 500px;
@@ -1247,5 +1252,11 @@ p.error {
 }
 .leftBtn{
   text-align: right;
+}
+
+/* 検索ページ */
+.map{
+  max-height: 100%;
+  max-width: 100%;
 }
 /*# sourceMappingURL=style.css.map */
