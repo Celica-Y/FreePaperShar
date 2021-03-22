@@ -29,7 +29,7 @@ public class controller {
 		return mv;
 	}
 
-	// 検索ページの表示
+	// 検索ページの表示・検索機能
 	@RequestMapping(value="/search", method=RequestMethod.GET)
 	public ModelAndView referenceGet(ModelAndView mv) {
 		mv.setViewName("search"); 
