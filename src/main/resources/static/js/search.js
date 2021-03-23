@@ -65,34 +65,7 @@ $(document).ready(function() {
       // 選択時に呼び出す
       onSelect: function(e, data) {
  
-        //セレクト作成
-        let op = document.createElement("option");
-        // エリア８に対応する都道府県のみ表示
-        var result = $.grep(data.area8, function (e) {
-          return e[data.area8] == value;
-         });
-        console.log(result) ;
-
-        document.getElementById("select-pref").appendChild(op);
-      
-
-          // 表示
-          $('[name="select-pref"]').val(data.name);
-
-
-        console.log(data.code+'(地図データ)');
-        
-        // 都道府県のフォーム生成
-
-        $.getJSON('pref_city.json', function(json) {
-          
-          // const data = json[0]; 
-          // console.log(data[0].pref);　//北海道が表示される
-          
-
-        });
-
-        // 市区町村のフォーム生成
+      //  都道府県で検索をかけ、検索結果へ飛ぶ
      
       }
     
