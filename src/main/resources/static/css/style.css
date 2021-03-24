@@ -1259,4 +1259,13 @@ p.error {
   max-height: 100%;
   max-width: 100%;
 }
+
+.pull{
+  box-shadow: none;
+border: 2px solid rgba(0, 0, 0, 0.1);
+width: 50%;
+font-size: 18px;
+font-weight: 300;
+border-radius: 7px;
+}
 /*# sourceMappingURL=style.css.map */

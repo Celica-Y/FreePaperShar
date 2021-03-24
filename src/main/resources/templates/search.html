@@ -58,9 +58,11 @@
 	<script type="text/javascript" th:src="@{/js/jmap.js}"></script>
 	<!-- serch Js-->
 	<script type="text/javascript" th:src="@{/js/search.js}"></script>
-
+	<!-- 都道府県連動プルダウン　js-->
 	<script type="text/javascript" th:src="@{/js/city-search.js}"></script>
-    </head>
+	<script type="text/javascript" th:src="@{/js/pull-downMenu.js}"></script>
+
+	</head>
 
     <body>
 		<div id="fh5co-page">
@@ -102,8 +104,8 @@
 						<div class="map">
 							<div id="jmap">
 								<div class="jmap-infobox">
-										<p><i class="icon-search3"></i>
-										地図から置き場所を検索</p>
+									<p><i class="icon-search3"></i>
+									地図から置き場所を検索(リンクページに飛びます)</p>
 								</div>
 							</div>
 						</div>
@@ -114,28 +116,36 @@
 
 							<div class="row">
 								<div class="col-md-6">
+
 									<div class="form-group">
 										<p>都道府県</p>
-										<select id="prefectures" name="prefectures" class="mt-0">
+										<select id="prefectures" name="prefectures" class="mt-0 pull">
 											<option value="">都道府県を選択</option>
 										</select>
 
 									<div class="form-group">
 										<p>市区町村</p>
-										<select  class="mt-0" id="city" name="city" >
+										<select id="city" name="city" class="mt-0 pull">
 											<option value="">市区町村を選択</option>
 										</select>
 									</div>
 
 									<div class="form-group">
 										<p>カテゴリー</p>
-										<select name="" class="mt-0"></select>
+										<select name="category" id="category" class="mt-0 pull">
+											<option value="">カテゴリーを選択</option>
+										</select>
 									</div>
 
 
 									<div class="form-group">
-										<p>発行年月</p>
-										<select name="" class="mt-0"></select>
+										<p>発行年</p>
+										<select name="year" id="year" class="mt-0 pull"></select>
+									</div>
+
+									<div class="form-group">
+										<p>発行月</p>
+										<select name="month" id="month" class="mt-0 pull"></select>
 									</div>
 
 									<div class="form-group">
@@ -165,6 +175,6 @@
 	
 	<!-- MAIN JS -->
 	<script type="text/javascript" th:src="@{/js/main.js}"></script>
-
+	
     </body>
 </html>
