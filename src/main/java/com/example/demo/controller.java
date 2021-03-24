@@ -29,11 +29,17 @@ public class controller {
 		return mv;
 	}
 
-	// 検索ページの表示・検索機能
+	// 検索ページの表示
 	@RequestMapping(value="/search", method=RequestMethod.GET)
 	public ModelAndView referenceGet(ModelAndView mv) {
 		mv.setViewName("search"); 
 		return mv;
 	}
-	
+
+	// 投稿ページの表示(urlはログイン機能追加後に変更)
+	@RequestMapping(value="/regist", method=RequestMethod.GET)
+	public ModelAndView registerGet(ModelAndView mv) {
+		mv.setViewName("search"); 
+		return mv;
+	}
 }
