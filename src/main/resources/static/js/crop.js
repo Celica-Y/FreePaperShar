@@ -1,9 +1,9 @@
 
 $(function() {
+// 会員登録ページの切り抜き
   var $preview = $('.crop');
   
   // 画像の読み込みと切り抜きへの表示
-      
       function readFile(input) {
         if (input.files && input.files[0]) {
           var reader = new FileReader();
@@ -68,7 +68,4 @@ $(function() {
 
   //保存はAjaxに。
 
-
-    
-    
       })

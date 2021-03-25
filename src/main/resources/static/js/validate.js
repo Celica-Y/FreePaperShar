@@ -1,6 +1,5 @@
 $(function () {
 // 会員登録のバリデーション
-
     $('#form').validate({
       errorElement:'p', 
       // バリデーションルール
@@ -33,6 +32,60 @@ $(function () {
               error.insertAfter(element)
           }
       }
+    });
+
+    // 投稿ページのバリデーション
+    $('#register-form').validate({
+        errorElement:'p', 
+        // バリデーションルール
+      rules: {
+        paperName: {
+            required: true
+        },
+        prefectures: {
+            required: true　　　 
+        },
+        city: {
+            required: true　
+        },
+        category: {
+            required: true
+        },
+        year:{
+            required: true
+        },
+        month:{
+            required: true
+        }
+    },
+    messages: {
+        paperName: {
+            required:  '必須です。入力してください。'
+        },
+        prefectures: {
+            required: '必須です。選択してください。'　　　 
+        },
+        city: {
+            required: '必須です。選択してください。'　
+        },
+        category: {
+            required: '必須です。選択してください。'
+        },
+        year:{
+            required: '必須です。選択してください。'
+        },
+        month:{
+            required: '必須です。選択してください。'
+        }
+    },
+    errorPlacement: function(error, element){
+        if(element.attr('name')=='month'){
+            error.insertAfter('#month')
+        } else{
+            error.insertAfter(element)
+        }
+    }
+
     });
 
 }());

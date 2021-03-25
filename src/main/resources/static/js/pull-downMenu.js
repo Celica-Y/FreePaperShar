@@ -35,12 +35,12 @@ $(document).ready(function(){
 // 年月のプルダウン作成
         const today = new Date();
         const thisYear = today.getFullYear();
-        const thisMonth = today.getMonth() + 1;
+
 
         const createOption = (id, startNum, endNum, current) => {
         const selectDom = document.getElementById(id);
         let optionDom = '';
-        for (let i = startNum; i <= endNum; i++) {
+        for (let i = startNum; i <= endNum; i++) { //降順
             if (i === current) {
             option = '<option value="' + i + '" selected>' + i + '</option>';
             } else {
@@ -50,8 +50,6 @@ $(document).ready(function(){
         }
         selectDom.insertAdjacentHTML('beforeend', optionDom);
         }
-        createOption('year', 1980, thisYear, thisYear);
-        createOption('month', 1, 12, thisMonth);
-
-
+        createOption('year', 1980, thisYear);
+        createOption('month', 1, 12);
 });

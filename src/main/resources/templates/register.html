@@ -49,18 +49,33 @@
 	<link rel="stylesheet" type="text/css" th:href="@{css/flexslider.css}">
 	<!-- Theme style  -->
 	<link rel="stylesheet" type="text/css" th:href="@{css/style.css}">
-	
+	<!-- croppie -->
+	<link rel="stylesheet" type="text/css" th:href="@{/node_modules/croppie/croppie.css}" />
+
 	<!-- Modernizr JS -->
 	<script type="text/javascript" th:src="@{/js/modernizr-2.6.2.min.js}"></script>
 	<!-- jquery -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	
-	<script type="text/javascript" th:src="@{/js/jmap.js}"></script>
-	<!-- serch Js-->
-	<script type="text/javascript" th:src="@{/js/search.js}"></script>
 	<!-- 都道府県連動プルダウン　js-->
 	<script type="text/javascript" th:src="@{/js/city-search.js}"></script>
+	<!-- カテゴリーpull-down menu　js -->
 	<script type="text/javascript" th:src="@{/js/pull-downMenu.js}"></script>
+	<!-- 画像の表示 -->
+	<script>
+		$(function(){
+			$('#uploadImg').on('change', function (e) {
+			
+				var reader = new FileReader();
+				reader.onload = function (e) {
+			
+				$("#view").attr('src', e.target.result);
+				}
+		
+				reader.readAsDataURL(e.target.files[0]);	
+			});
+		});
+	</script>
+
 
 	</head>
 
@@ -95,66 +110,71 @@
 						
 					<div class="row">
 						<div class="col-md-4">
-							<h2>検索</h2>
+							<h2>投稿ページ</h2>
 						</div>
 						<hr>
 					</div>
 
+					<form class="action" id="register-form" method="POST">
+
 					<div class="col-md-6">
-						<div class="map">
-							<div id="jmap">
-								<div class="jmap-infobox">
-									<p><i class="icon-search3"></i>
-									地図から置き場所を検索(リンクページに飛びます)</p>
-								</div>
-							</div>
+						<div class="form-group">
+							<p>フリーペーパーの名前(必須)</p>
+							<input type="text" class="form-control" name="paperName" placeholder="フリーペーパーの名前を入力">
+						</div>
+
+						<div class="form-group">
+							<p>置き場所の情報(必須)<br><small>都道府県</small></p>
+							<select id="prefectures" name="prefectures" class="mt-0 pull">
+								<option value="">都道府県を選択</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<p><small>市区町村</small></p>
+							<select id="city" name="city" class="mt-0 pull">
+								<option value="">市区町村を選択</option>
+							</select>
+						</div>
+
+						<div class="form-group">
+							<p>カテゴリー(必須)</p>
+							<select name="category" id="category" class="mt-0 pull">
+								<option value="">カテゴリーを選択</option>
+							</select>
+						</div>
+
+						<div class="form-group">
+							<p>発行年(必須)</p>
+							<select name="year" id="year" class="mt-0 pull">
+								<option value="">発行年を選択</option>
+							</select>
+							<p>発行月(必須)</p>
+							<select name="month" id="month" class="mt-0 pull">
+								<option value="">発行月を選択</option>
+							</select>
 						</div>
 					</div>
 
-					<!-- 詳細検索 -->
-					<form class="action" id="form" method="POST">
 
 							<div class="row">
 								<div class="col-md-6">
 
 									<div class="form-group">
-										<p>都道府県</p>
-										<select id="prefectures" name="prefectures" class="mt-0 pull">
-											<option value="">都道府県を選択</option>
-										</select>
-
-									<div class="form-group">
-										<p>市区町村</p>
-										<select id="city" name="city" class="mt-0 pull">
-											<option value="">市区町村を選択</option>
-										</select>
+										<p>お店などの情報やコメントなど</p>
+										<textarea id="" class="form-control" placeholder="お店などの置き場所に関する情報やコメントなどを記入"></textarea>
 									</div>
 
 									<div class="form-group">
-										<p>カテゴリー</p>
-										<select name="category" id="category" class="mt-0 pull">
-											<option value="">カテゴリーを選択</option>
-										</select>
-									</div>
-
-
-									<div class="form-group">
-										<p>発行年</p>
-										<select name="year" id="year" class="mt-0 pull"></select>
-									</div>
-
-									<div class="form-group">
-										<p>発行月</p>
-										<select name="month" id="month" class="mt-0 pull"></select>
-									</div>
-
-									<div class="form-group">
-										<p>フリーワード</p>
-										<input type="search" class="form-control" placeholder="キーワードを入力">
+										<p>写真</p>
+										<label class="btn btn-primary btn-md butan">画像を選択
+											<input style="display: none;" class="input-tag" type="file" id="uploadImg" name="uploadImg" >
+										</label>
+										<p>プレビュー</p>
+										<img src="" id="view" class="preview">
 									</div>
 									
 									<div class="form-group">
-										<input type="submit" class="btn btn-primary btn-md" value="検索">
+										<input type="submit" class="btn btn-primary btn-md" value="投稿する！">
 									</div>
 								</div>
 
@@ -172,9 +192,13 @@
 	<script type="text/javascript"　src="@{/js/bootstrap.min.js}"></script>
 	<!-- Waypoints -->
 	<script type="text/javascript" th:src="@{/js/jquery.waypoints.min.js}"></script>
-	
+	<!-- validate js-->
+	<script type="text/javascript" th:src="@{/node_modules/jquery-validation/dist/jquery.validate.js}"></script>
+
 	<!-- MAIN JS -->
 	<script type="text/javascript" th:src="@{/js/main.js}"></script>
+	<!-- validate Js-->
+	<script type="text/javascript" th:src="@{/js/validate.js}"></script>
 	
     </body>
 </html>

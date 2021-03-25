@@ -39,7 +39,7 @@ public class controller {
 	// 投稿ページの表示(urlはログイン機能追加後に変更)
 	@RequestMapping(value="/regist", method=RequestMethod.GET)
 	public ModelAndView registerGet(ModelAndView mv) {
-		mv.setViewName("search"); 
+		mv.setViewName("register"); 
 		return mv;
 	}
 }
