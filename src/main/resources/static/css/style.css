@@ -1272,4 +1272,13 @@ p.error {
   font-weight: 300;
   border-radius: 7px;
 }
+
+/* 投稿詳細 */
+th, td{
+  padding: 10px;
+}
+.detail-img{
+  height: 50%;
+  width: 100%;
+}
 /*# sourceMappingURL=style.css.map */
