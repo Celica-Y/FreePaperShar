@@ -26,13 +26,13 @@ body {
 }
 
 a {
-  color: #228896;
+  color: #239623;
   -webkit-transition: 0.5s;
   -o-transition: 0.5s;
   transition: 0.5s;
 }
 a:hover, a:active, a:focus {
-  color: #228896;
+  color: #239623;
   outline: none;
   text-decoration: none !important;
 }
@@ -75,17 +75,17 @@ hr{
 
 ::-webkit-selection {
   color: #fff;
-  background: #228896;
+  background: #239623;
 }
 
 ::-moz-selection {
   color: #fff;
-  background: #228896;
+  background: #239623;
 }
 
 ::selection {
   color: #fff;
-  background: #228896;
+  background: #239623;
 } 
 
 #fh5co-page {
@@ -185,7 +185,7 @@ img.logo-img {
   bottom: 7px;
   left: 10px;
   right: 10px;
-  background-color: #228896;
+  background-color: #239623;
   visibility: hidden;
   -webkit-transform: scaleX(0);
   -moz-transform: scaleX(0);
@@ -261,7 +261,7 @@ img.logo-img {
 #fh5co-aside .fh5co-footer ul li a:hover, #fh5co-aside .fh5co-footer ul li a:active, #fh5co-aside .fh5co-footer ul li a:focus {
   text-decoration: none;
   outline: none;
-  color: #228896;
+  color: #239623;
 }
 
 
@@ -297,7 +297,7 @@ img.logo-img {
   }
 }
 .profile-img-small{
-  height: 15vh;
+  height: 10vh;
   border: 0.5px solid;
   border-radius: 50%;
 }
@@ -538,6 +538,13 @@ body.offcanvas #fh5co-main, body.offcanvas .fh5co-nav-toggle {
 .entry .desc {
   padding: 25px;
 }
+/* カードの行数制御（...を表示） */
+.entry .desc p{
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+}
 .entry .desc h3 {
   font-size: 15px;
   text-transform: uppercase;
@@ -656,7 +663,7 @@ body.offcanvas #fh5co-main, body.offcanvas .fh5co-nav-toggle {
 }
 
 .fh5co-heading-colored {
-  color: #228896;
+  color: #239623;
   font-size: 30px;
 }
 
@@ -716,7 +723,7 @@ body.offcanvas #fh5co-main, body.offcanvas .fh5co-nav-toggle {
 
 .fh5co-counter .fh5co-number {
   font-size: 100px;
-  color: #228896;
+  color: #239623;
   font-weight: 400;
   margin: 0;
   padding: 0;
@@ -786,12 +793,12 @@ body.offcanvas #fh5co-main, body.offcanvas .fh5co-nav-toggle {
   }
 }
 .fh5co-social li a:hover {
-  color: #228896;
+  color: #239623;
 }
 .fh5co-social li a:hover, .fh5co-social li a:active, .fh5co-social li a:focus {
   outline: none;
   text-decoration: none;
-  color: #228896;
+  color: #239623;
 }
 
 #map {
@@ -832,7 +839,7 @@ body.offcanvas #fh5co-main, body.offcanvas .fh5co-nav-toggle {
 .fh5co-feature .fh5co-icon i {
   display: table-cell;
   vertical-align: middle;
-  color: #228896;
+  color: #239623;
   font-size: 40px;
   height: 100px;
 }
@@ -861,7 +868,7 @@ body.offcanvas #fh5co-main, body.offcanvas .fh5co-nav-toggle {
   margin-top: 30px;
 }
 .fh5co-feature.fh5co-feature-sm .fh5co-icon i {
-  color: #228896;
+  color: #239623;
   font-size: 40px;
 }
 @media screen and (max-width: 1200px) {
@@ -921,21 +928,21 @@ body.offcanvas #fh5co-main, body.offcanvas .fh5co-nav-toggle {
 }
 
 .btn-primary {
-  background: #228896;
+  background: #239623;
   color: #fff;
-  border: 2px solid #228896;
+  border: 2px solid #239623;
 }
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
-  background: #279bab !important;
-  border-color: #279bab !important;
+  background: #95ab27 !important;
+  border-color: #95ab27 !important;
 }
 .btn-primary.btn-outline {
   background: transparent;
-  color: #228896;
-  border: 2px solid #228896;
+  color: #239623;
+  border: 2px solid #239623;
 }
 .btn-primary.btn-outline:hover, .btn-primary.btn-outline:focus, .btn-primary.btn-outline:active {
-  background: #228896;
+  background: #239623;
   color: #fff;
 }
 
@@ -959,21 +966,21 @@ body.offcanvas #fh5co-main, body.offcanvas .fh5co-nav-toggle {
 }
 
 .btn-info {
-  background: #5bc0de;
+  background: #5bde87;
   color: #fff;
-  border: 2px solid #5bc0de;
+  border: 2px solid #5bde87;
 }
 .btn-info:hover, .btn-info:focus, .btn-info:active {
-  background: #46b8da !important;
-  border-color: #46b8da !important;
+  background: #5ed945 !important;
+  border-color: #5ed945 !important;
 }
 .btn-info.btn-outline {
   background: transparent;
-  color: #5bc0de;
-  border: 2px solid #5bc0de;
+  color: #5bde87;
+  border: 2px solid #5bde87;
 }
 .btn-info.btn-outline:hover, .btn-info.btn-outline:focus, .btn-info.btn-outline:active {
-  background: #5bc0de;
+  background: #5bde87;
   color: #fff;
 }
 
@@ -1045,7 +1052,7 @@ body.offcanvas #fh5co-main, body.offcanvas .fh5co-nav-toggle {
 .form-control:active, .form-control:focus {
   outline: none;
   box-shadow: none;
-  border-color: #228896;
+  border-color: #239623;
 }
 
 #message {
@@ -1280,5 +1287,16 @@ th, td{
 .detail-img{
   height: 50%;
   width: 100%;
+}
+
+/* マイページ */
+.mypage-registBtn{
+  display:flex;
+  justify-content:flex-end;
+}
+.btn-parallel{
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 /*# sourceMappingURL=style.css.map */

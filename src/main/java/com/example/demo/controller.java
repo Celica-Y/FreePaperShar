@@ -46,8 +46,14 @@ public class controller {
 // 投稿詳細ぺーじの表示
 	@RequestMapping(value="/detail", method=RequestMethod.GET)
 	public ModelAndView datailsGet(ModelAndView mv) {
-	mv.setViewName("details"); 
-	return mv;
-}
+		mv.setViewName("details"); 
+		return mv;
+	}
 
+// マイページの表示
+	@RequestMapping(value="/mypage", method=RequestMethod.GET)
+	public ModelAndView mypageGet(ModelAndView mv) {
+		mv.setViewName("mypage"); 
+		return mv;
+}
 }

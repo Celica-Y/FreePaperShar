@@ -4,7 +4,7 @@
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ぺっふり〜</title>
+	<title>ぺっふり〜　マイページ </title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="フリーパーパーの置き場所を見つけて共有するサイトです。" />
 	<meta name="keywords" content="ぺっふり〜、ぺっふりー、フリーペーパー、場所、置き場所、フリーペーパーの場所" />
@@ -72,7 +72,7 @@
 					<li><a href="/search">検索</a></li>
 					<li><a href="portfolio.html">マイページ</a></li>
 					<!--ログイン時は「ログアウト」へ変更-->
-					<li><a href="/login">ログイン</a></li>
+					<li><a href="/">ログアウト</a></li>
 				</ul>
 			</nav>
 
@@ -82,78 +82,23 @@
 
 		</aside>
 
-<!-- 写真あり会員登録ボタン -->
 		<div id="fh5co-main">
-			<div id="fh5co-hero" class="js-fullheight">
-				<div class="flexslider js-fullheight">
-					<div class="container-fluid"> 
-						<div class="row">
-							<div class=" text-center slider-text">
-					   				<div class="slider-text-inner">
-					   					<h1>こんなところにフリーペーパーが！<br>を共有しませんか</h1>
-										<p><a href="/entry" class="btn btn-primary btn-learn">無料で登録して始める<i class="icon-arrow-right3"></i></a></p>
-					   				</div>
-					   		</div>
-					   	</div>
-				   	</div>
-				</div>
-			</div>
-<!-- サービス紹介 -->
-			<div class="fh5co-narrow-content">
-				<h2 class="fh5co-heading animate-box" data-animate-effect="fadeInLeft">Services</h2>
-				<hr>
+			<div class="fh5co-narrow-content animate-box" data-animate-effect="fadeInLeft">
 				<div class="row">
-					<div class="col-md-6">
-						<div class="fh5co-feature animate-box" data-animate-effect="fadeInLeft">
-							<div class="fh5co-icon">
-								<i class="icon-search3"></i>
-							</div>
-							<div class="fh5co-text">
-								<h3>検索</h3>
-								<p>都道府県別、市町村別、投稿日時、ジャンル、フリーワードにてフリーペーパー の情報を検索できます。</p>
-							</div>
-						</div>
+					<div class="col-md-4">
+						<h2><img th:src="@{/images/プロフィール画像.png}" class="profile-img-small"><span> 名前</span></h2>
 					</div>
-					<div class="col-md-6">
-						<div class="fh5co-feature animate-box" data-animate-effect="fadeInLeft">
-							<div class="fh5co-icon">
-								<i class="icon-bubble3"></i>
-							</div>
-							<div class="fh5co-text">
-								<h3>情報共有</h3>
-								<p>フリーペーパーを目撃したら、情報を共有しましょう！</p>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-md-6">
-						<div class="fh5co-feature animate-box" data-animate-effect="fadeInLeft">
-							<div class="fh5co-icon">
-								<i class="icon-heart"></i>
-							</div>
-							<div class="fh5co-text">
-								<h3>お気に入りリスト</h3>
-								<p>会員登録をすると、フリーペーパーの口コミ投稿をお気に入りとして登録することができます。 </p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<div class="fh5co-feature animate-box" data-animate-effect="fadeInLeft">
-							<div class="fh5co-icon">
-								<i class="icon-user-add"></i>
-							</div>
-							<div class="fh5co-text">
-								<h3>登録して始めましょう</h3>
-								<p>置き場所がわからなかったフリーペーパーを発見！！ついでにその街を見回ってみたら新たな発見があるかも…！？</p>
-							</div>
-						</div>
-					</div>
+					<p class="mypage-registBtn">
+						<a href="/regist" class="btn btn-primary"><i class="icon-pencil">投稿する</i></a>
+					</p>
+					<hr>
 				</div>
 			</div>
+
+			
 <!-- 投稿情報の一部表示 -->
 			<div class="fh5co-narrow-content">
-				<h2 class="fh5co-heading animate-box" data-animate-effect="fadeInLeft">投稿</h2>
-				<hr>
+				<h2 class="fh5co-heading animate-box" data-animate-effect="fadeInLeft">投稿履歴一覧</h2>
 				<div class="row row-bottom-padded-md">
 					<div class="col-md-3 col-sm-6 col-padding animate-box" data-animate-effect="fadeInLeft">
 						<div class="entry">
@@ -208,8 +153,80 @@
 						</div>
 					</div>
 					<div class="btn2 animate-box" data-animate-effect="fadeInLeft">
-						<p><a class="btn btn-primary btn-learn">もっと見る<i class="icon-arrow-right3"></i></a></p>
+						<p><a href="#" class="btn btn-primary btn-learn">履歴一覧<i class="icon-arrow-right3"></i></a></p>
 					</div>
+				</div>
+			</div>
+
+<!-- お気に入り情報の一部表示 -->
+			<div class="fh5co-narrow-content">
+				<h2 class="fh5co-heading animate-box" data-animate-effect="fadeInLeft">お気に入り履歴一覧</h2>
+				<div class="row row-bottom-padded-md">
+					<div class="col-md-3 col-sm-6 col-padding animate-box" data-animate-effect="fadeInLeft">
+						<div class="entry">
+							<a href="#" class="blog-img"><img th:src="@{images/img-1.jpg}" class="img-responsive" alt="Free HTML5 Bootstrap Template by FreeHTML5.co"></a>
+							<div class="desc">
+								<small>カテゴリー</small>
+								<h3><a href="#">フリーペーパーの名前1</a></h3>
+								<p>投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容
+									投稿内容投稿内容投稿内容投稿内容投稿内容</p>
+								<span><img th:src="@{/images/プロフィール画像.png}" class="profile-img-small"><small>　2010/11/15 </small>  <small> 13:00</small></span>
+								<a href="#" class="lead">Read More <i class="icon-arrow-right3"></i></a>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3 col-sm-6 col-padding animate-box" data-animate-effect="fadeInLeft">
+						<div class="entry">
+							<a href="#" class="blog-img"><img th:src="@{images/img-2.jpg}" class="img-responsive" alt="Free HTML5 Bootstrap Template by FreeHTML5.co"></a>
+							<div class="desc">
+								<small>カテゴリー</small>
+								<h3><a href="#">フリーペーパーの名前2</a></h3>
+								<p>投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容
+									投稿内容投稿内容投稿内容投稿内容投稿内容</p>
+								<span><img th:src="@{/images/プロフィール画像.png}" class="profile-img-small"><small>　2010/11/15 </small>  <small> 13:00</small></span>
+								<a href="#" class="lead">Read More <i class="icon-arrow-right3"></i></a>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3 col-sm-6 col-padding animate-box" data-animate-effect="fadeInLeft">
+						<div class="entry">
+							<a href="#" class="blog-img"><img th:src="@{/images/img-3.jpg}" class="img-responsive" alt="Free HTML5 Bootstrap Template by FreeHTML5.co"></a>
+							<div class="desc">
+								<small>カテゴリー</small>
+								<h3><a href="#">フリーペーパーの名前3</a></h3>
+								<p>投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容
+									投稿内容投稿内容投稿内容投稿内容投稿内容</p>
+								<span><img th:src="@{/images/プロフィール画像.png}" class="profile-img-small"><small>　2010/11/15 </small>  <small> 13:00</small></span>
+								<a href="#" class="lead">Read More <i class="icon-arrow-right3"></i></a>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3 col-sm-6 col-padding animate-box" data-animate-effect="fadeInLeft">
+						<div class="entry">
+							<a href="#" class="blog-img"><img th:src="@{/images/img-4.jpg}" class="img-responsive" alt="Free HTML5 Bootstrap Template by FreeHTML5.co"></a>
+							<div class="desc">
+								<small>カテゴリー</small>
+								<h3><a href="#">フリーペーパーの名前4</a></h3>
+								<p>投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容
+									投稿内容投稿内容投稿内容投稿内容投稿内容</p>
+								<span><img th:src="@{/images/プロフィール画像.png}" class="profile-img-small"><small>　2010/11/15 </small>  <small> 13:00</small></span>
+								<a href="#" class="lead">Read More <i class="icon-arrow-right3"></i></a>
+							</div>
+						</div>
+					</div>
+					<div class="btn2 animate-box" data-animate-effect="fadeInLeft">
+						<p><a href="#" class="btn btn-primary btn-learn">お気に入り一覧<i class="icon-arrow-right3"></i></a></p>
+					</div>
+
+					<div class="col-md-4 btn-parallel">
+						<div class="btn2 animate-box" data-animate-effect="fadeInLeft">
+							<p><a class="btn btn-primary btn-learn">プロフィールの変更</a></p>
+						</div>
+						<div class="btn2 animate-box" data-animate-effect="fadeInLeft">
+							<p><a class="btn btn-primary btn-learn">退会</a></p>
+						</div>
+					</div>
+					
 				</div>
 			</div>
 
