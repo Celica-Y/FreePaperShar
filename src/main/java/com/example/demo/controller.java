@@ -83,5 +83,12 @@ public class controller {
 	public ModelAndView withdrawalGet(ModelAndView mv) {
 	mv.setViewName("withdrawal"); 
 	return mv;
-}
+	}
+
+// プロフ変更ページ表示
+	@RequestMapping(value="/change", method=RequestMethod.GET)
+	public ModelAndView profilleChangeGet(ModelAndView mv) {
+	mv.setViewName("profilleChange"); 
+	return mv;
+	}
 }
