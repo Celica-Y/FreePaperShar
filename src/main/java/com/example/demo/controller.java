@@ -55,5 +55,26 @@ public class controller {
 	public ModelAndView mypageGet(ModelAndView mv) {
 		mv.setViewName("mypage"); 
 		return mv;
-}
+	}
+
+// 検索結果一覧表示
+	@RequestMapping(value="/result", method=RequestMethod.GET)
+	public ModelAndView searchResultGet(ModelAndView mv) {
+		mv.setViewName("searchResult"); 
+		return mv;
+	}
+
+// 投稿一覧の表示
+	@RequestMapping(value="/post", method=RequestMethod.GET)
+	public ModelAndView postListGet(ModelAndView mv) {
+		mv.setViewName("postList"); 
+		return mv;
+	}
+
+// お気に入り一覧の表示
+	@RequestMapping(value="/favorite", method=RequestMethod.GET)
+	public ModelAndView favoriteListGet(ModelAndView mv) {
+		mv.setViewName("favoriteList"); 
+		return mv;
+	}
 }
