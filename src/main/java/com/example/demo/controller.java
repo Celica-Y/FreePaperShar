@@ -77,4 +77,11 @@ public class controller {
 		mv.setViewName("favoriteList"); 
 		return mv;
 	}
+
+// 退会ページの表示
+	@RequestMapping(value="/withd", method=RequestMethod.GET)
+	public ModelAndView withdrawalGet(ModelAndView mv) {
+	mv.setViewName("withdrawal"); 
+	return mv;
+}
 }
