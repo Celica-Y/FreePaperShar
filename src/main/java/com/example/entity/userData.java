@@ -1,4 +1,4 @@
-package com.example.DataController;
+package com.example.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,31 +10,32 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Type;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.ToString;
 
 @Entity
 @Data
-@AllArgsConstructor
-@Table(name="userData")
+@ToString(exclude = { "password" })
+@Table(name="userTable")
 public class userData {
-    
+
     @Id 
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column (name="Id")
 	private long id;
 
-    @Column(name = "mail", length = 45, nullable = false)
-	private long mail;
+    @Column(name = "userName", length = 16, nullable = true)
+	private String userName;
 
-    @Column(name = "name", length = 16, nullable = false)
-	private long name;
+    @Column(name = "Email", length =120, nullable = false, unique = true)
+	private String Email;
 
     @Column(name = "password", length = 6, nullable = false)
-	private long password;
+	private String password;
 
     @Lob
     @Type(type = "org.hibernate.type.BinaryType")
-    @Column(name = "profilePicture")
+    @Column(name = "profilePicture", nullable = true)
 	private byte[] profilePicture;
+
 }
