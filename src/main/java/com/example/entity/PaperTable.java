@@ -1,11 +1,16 @@
 package com.example.entity;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Type;
@@ -47,4 +52,8 @@ public class PaperTable {
     @Type(type = "org.hibernate.type.BinaryType")
     @Column(name = "uploadImg", nullable = true)
 	private byte[] uploadImg;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable
+    private Set<userData> user;
 }

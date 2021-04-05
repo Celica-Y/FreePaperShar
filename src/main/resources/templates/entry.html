@@ -97,7 +97,7 @@
                     <hr>
 				</div>
 
-				<form class="action" id="form" method="POST" action="/entry" th:object="${entryForm}">
+				<form class="action" id="form" method="POST" action="/entry" th:object="${entryForm}" enctype="multipart/form-data">
 					<div class="col-md-12">
 						<div class="row">
 							<div class="col-md-6">
@@ -127,7 +127,7 @@
 											<input style="display: none;" class="input-tag" type="file" id="upload" accept="image/*"/>
 										</label>
 										<div>
-											<img id="upload-view" >
+											<img id="upload-view" name="file">
 										</div>
 
 										<div id="cropImagePop">
