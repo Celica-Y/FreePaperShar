@@ -115,12 +115,12 @@
 						<hr>
 					</div>
 
-					<form class="action" id="register-form" method="POST">
+					<form class="action" id="register-form" method="POST" th:object="${PaperForm}">
 
 					<div class="col-md-6">
 						<div class="form-group">
 							<p>フリーペーパーの名前(必須)</p>
-							<input type="text" class="form-control" name="paperName" placeholder="フリーペーパーの名前を入力">
+							<input type="text" class="form-control" name="PaperName" placeholder="フリーペーパーの名前を入力">
 						</div>
 
 						<div class="form-group">
@@ -161,7 +161,7 @@
 
 									<div class="form-group">
 										<p>お店などの情報やコメントなど</p>
-										<textarea id="" class="form-control" placeholder="お店などの置き場所に関する情報やコメントなどを記入"></textarea>
+										<textarea id="" name="comment" class="form-control" placeholder="お店などの置き場所に関する情報やコメントなどを記入"></textarea>
 									</div>
 
 									<div class="form-group">
