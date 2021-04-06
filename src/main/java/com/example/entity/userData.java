@@ -18,7 +18,7 @@ import lombok.ToString;
 
 @Entity
 @Data
-@ToString(exclude = { "password" })
+@ToString(exclude = { "password", "profilePicture" })
 @Table(name="userTable")
 public class userData {
 
@@ -38,10 +38,11 @@ public class userData {
 
     @Lob
     @Type(type = "org.hibernate.type.BinaryType")
-    @Column(name = "profilePicture", nullable = true)
-	private byte[] profilePicture;
+    @Column(name = "profilePicture", length = 100000, nullable = true)
+	private String profilePicture;
 
     @ManyToMany(mappedBy = "user")
     private Set<PaperTable>  paperTable;
+
 
 }
