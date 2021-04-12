@@ -124,18 +124,18 @@
 								
 									<div class="form-group">
 										<label class="btn btn-primary btn-md butan">画像を選択
-											<input style="display: none;" class="input-tag" type="file" id="upload" multiple name="profilePicture">
+											<input style="display: none;" class="input-tag" type="file" id="upload" />
 										</label>
 										<div>
-											<img id="upload-view" >
-											<!-- <input style="display: none;" name="profilePicture"> -->
+											<img id="upload-view">
+											<input type="text" style="display: none;" name="profilePicture"/>
 										</div>
 
 										<div id="cropImagePop">
 											<div class="crop-content">
 												<div class="crop"></div>
 												<input type="button" class="modal-btn-cancel btn btn-primary btn-md" value="キャンセル">
-												<input type="button" class="upload-result btn btn-primary btn-md" value="決定" >
+												<input type="button" class="upload-result btn btn-primary btn-md" id="upload-result" value="決定" >
 											</div>
 										</div>
 									</div>

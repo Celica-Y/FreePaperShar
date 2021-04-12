@@ -56,6 +56,7 @@ $(function() {
           size: 'viewport'
         }).then(function (resp) {
           $("#upload-view").attr('src', resp);
+          $('input[name="profilePicture"]').val(resp);
           $("#cropImagePop").modal('hide');
           
         });
@@ -63,9 +64,6 @@ $(function() {
 
       $('.upload-result').click(function(e) {
         $('#cropImagePop').hide();
-    });
-  
-
-  //保存はAjaxに。
+      });
 
       })

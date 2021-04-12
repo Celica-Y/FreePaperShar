@@ -36,9 +36,7 @@ public class userData {
     @Column(name = "password", length = 6, nullable = false)
 	private String password;
 
-    @Lob
-    @Type(type = "org.hibernate.type.BinaryType")
-    @Column(name = "profilePicture", length = 100000, nullable = true)
+    @Column(columnDefinition="TEXT", name = "profilePicture", nullable = true)
 	private String profilePicture;
 
     @ManyToMany(mappedBy = "user")
