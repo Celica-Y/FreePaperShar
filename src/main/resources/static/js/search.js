@@ -62,11 +62,28 @@ $(document).ready(function() {
       {code : 47, name: "沖縄", color: "#cc492f"}
       ],
 
-      // 選択時に呼び出す
+      // 選択時に呼び出す。検索結果ページへ推移し、SpringBoot側へjsonデータを飛ばす
       onSelect: function(e, data) {
- 
-      //  都道府県で検索をかけ、検索結果へ飛ぶ
-     
+        $('#prefectureModal')
+        var jsonData = {code: data.code, name: data.name}
+        var Json = JSON.stringify(jsonData)
+        // console.log(a)
+
+        // ajaxでspring bootへ送信
+        $.ajax({
+          type:"POST",
+          url:"/search",
+          contentType: "application/json; charset=UTF-8",
+          data:Json,
+          error : function(XMLHttpRequest, textStatus, errorThrown) {
+            console.log("ajax通信に失敗しました");
+            //失敗した時の処理
+          },
+          success : function(response) {
+            console.log("ajax通信に成功しました");
+            //成功した時の処理
+          }
+        })
       }
     
   });

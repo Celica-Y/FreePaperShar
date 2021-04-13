@@ -50,6 +50,6 @@ $(document).ready(function(){
         }
         selectDom.insertAdjacentHTML('beforeend', optionDom);
         }
-        createOption('year', 1980, thisYear);
+        createOption('year', 2000, thisYear);
         createOption('month', 1, 12);
 });
