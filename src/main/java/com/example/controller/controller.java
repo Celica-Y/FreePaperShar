@@ -57,11 +57,7 @@ categoryEntityRipository categoryRipository;
 	 ModelAndView mv) {
 		// カテゴリープルダウン
 		List<PullDownCategory> DC =  categoryRipository.findAll();
-		// System.out.println(DC);
-		Map<String, String> CategoryPullDown = new LinkedHashMap<String, String>();
-		
-		// CategoryPullDown.put(String.valueOf(categoryRipository.findByCode()), String.valueOf(categoryRipository.findByName()));
-		// mv.addObject("category", CategoryPullDown);
+		mv.addObject("category", DC);
 		/**
 		 * 発行年プルダウン。
 		 * カレンダーから今年を取得し、１０年分繰り返えしてマップにする。
