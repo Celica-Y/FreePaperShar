@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class memberEntryController {
-
+// 会員登録
     @Autowired
     UserDataRipository userDataRipository;
 

@@ -1,6 +1,18 @@
 package com.example.controller;
  
+import java.util.Calendar;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+
+import com.example.entity.PullDownCategory;
+import com.example.ripository.categoryEntityRipository;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -37,8 +49,45 @@ public class controller {
 	}
 
 // 投稿ページの表示(urlはログイン機能追加後に変更)
+@Autowired
+categoryEntityRipository categoryRipository;
+
 	@RequestMapping(value="/regist", method=RequestMethod.GET)
-	public ModelAndView registerGet(ModelAndView mv) {
+	public ModelAndView registerGet(@ModelAttribute PullDownCategory DownCategory,
+	 ModelAndView mv) {
+		// カテゴリープルダウン
+		List<PullDownCategory> DC =  categoryRipository.findAll();
+		// System.out.println(DC);
+		Map<String, String> CategoryPullDown = new LinkedHashMap<String, String>();
+		
+		// CategoryPullDown.put(String.valueOf(categoryRipository.findByCode()), String.valueOf(categoryRipository.findByName()));
+		// mv.addObject("category", CategoryPullDown);
+		/**
+		 * 発行年プルダウン。
+		 * カレンダーから今年を取得し、１０年分繰り返えしてマップにする。
+		 */
+		Calendar cl = Calendar.getInstance();
+
+		Map<String, String> Year = new LinkedHashMap<String, String>();
+
+		int yearData = cl.get(Calendar.YEAR);
+		for (int i = 0 ; i <= 10 ; i++){
+			int YearData = yearData-i ;
+			Year.put(String.valueOf(i), String.valueOf(YearData));
+			// System.out.println(i);
+			// System.out.println(YearData);
+		  }
+		mv.addObject("Year", Year);
+
+		
+		//発行月プルダウン(keyは１始まり。その他のマップは０始まり)
+		Map<String, String> month = new LinkedHashMap<String, String>();
+		for (int i = 1; i <= 12; i++){
+			month.put(String.valueOf(i), String.valueOf(i));
+		}
+		mv.addObject("month", month);
+
+
 		mv.setViewName("register"); 
 		return mv;
 	}

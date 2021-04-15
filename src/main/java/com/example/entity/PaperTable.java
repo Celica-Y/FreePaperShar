@@ -9,11 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
-import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.Type;
 
 import lombok.Data;
 
@@ -48,10 +45,8 @@ public class PaperTable {
     @Column(name = "comment", length = 200, nullable = true)
 	private String comment;
 
-    @Lob
-    @Type(type = "org.hibernate.type.BinaryType")
-    @Column(name = "uploadImg", nullable = true)
-	private byte[] uploadImg;
+    @Column(columnDefinition="MIDIUMTEXT", name = "uploadImg", nullable = true)
+	private String uploadImg;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable

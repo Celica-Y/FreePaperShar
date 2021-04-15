@@ -2,6 +2,8 @@ package com.example.controller;
 
 import javax.servlet.http.HttpServletResponse;
 
+import com.example.model.JsonModel;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;

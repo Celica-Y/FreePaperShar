@@ -55,6 +55,7 @@ $(function() {
           type: 'canvas',
           size: 'viewport'
         }).then(function (resp) {
+          // プレビュー画像を送る
           $("#upload-view").attr('src', resp);
           $('input[name="profilePicture"]').val(resp);
           $("#cropImagePop").modal('hide');

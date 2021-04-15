@@ -1,9 +1,5 @@
 $(document).ready(function(){
     var Category = [
-        {"id": "1",category:"タウン情報誌"},
-        {"id": "2",category:"求人"},
-        {"id": "3",category:"クーポン"},
-        {"id": "4",category:"音楽"},
         {"id": "5",category:"映画"},
         {"id": "6",category:"通販"},
         {"id": "7",category:"ファッション・メイク"},
@@ -53,3 +49,6 @@ $(document).ready(function(){
         createOption('year', 2000, thisYear);
         createOption('month', 1, 12);
 });
+
+
+

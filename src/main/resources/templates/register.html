@@ -57,9 +57,9 @@
 	<!-- jquery -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<!-- 都道府県連動プルダウン　js-->
-	<script type="text/javascript" th:src="@{/js/city-search.js}"></script>
+	<!-- <script type="text/javascript" th:src="@{/js/city-search.js}"></script> -->
 	<!-- カテゴリーpull-down menu　js -->
-	<script type="text/javascript" th:src="@{/js/pull-downMenu.js}"></script>
+	<!-- <script type="text/javascript" th:src="@{/js/pull-downMenu.js}"></script> -->
 	<!-- 画像の表示 -->
 	<script>
 		$(function(){
@@ -115,74 +115,90 @@
 						<hr>
 					</div>
 
-					<form class="action" id="register-form" method="POST" th:object="${PaperForm}">
+					<form class="action" id="register-form" method="POST" th:object="${PaperForm}"　action="/resist" enctype="multipart/form-data">
 
-					<div class="col-md-6">
-						<div class="form-group">
-							<p>フリーペーパーの名前(必須)</p>
-							<input type="text" class="form-control" name="PaperName" placeholder="フリーペーパーの名前を入力">
+						<div class="col-md-6">
+							<div class="form-group">
+								<p>フリーペーパーの名前(必須)</p>
+								<input type="text" class="form-control" name="PaperName" placeholder="フリーペーパーの名前を入力">
+							</div>
+
+							<div class="form-group">
+								<p>置き場所の情報(必須)<br><small>都道府県</small></p>
+								<select id="prefectures" name="prefectures" class="mt-0 pull">
+									<option value="">都道府県を選択</option>
+									<option th:each="category : ${category}" 
+											th:value="${category.key}" 
+											th:text="${category.value}"
+											th:selected="${color.key == colorCd}">
+									</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<p><small>市区町村</small></p>
+								<select id="city" name="city" class="mt-0 pull">
+									<option value="">市区町村を選択</option>
+								</select>
+							</div>
+
+							<div class="form-group">
+								<p>カテゴリー(必須)</p>
+								<select name="category" id="category" class="mt-0 pull">
+									<option value="">カテゴリーを選択</option>
+									<option th:each="category : ${category}" 
+											th:value="${category.key}" 
+											th:text="${category.value}">
+									</option>
+								</select>
+							</div>
+
+							<div class="form-group">
+								<p>発行年(必須)</p>
+								<select name="year" id="year" class="mt-0 pull">
+									<option value="">発行年を選択</option>
+									<option th:each="Year : ${Year}" 
+											th:value="${Year.key}" 
+											th:text="${Year.value}">
+									</option>
+								</select>
+								<p>発行月(必須)</p>
+								<select name="month" id="month" class="mt-0 pull">
+									<option value="">発行月を選択</option>
+									<option th:each="month : ${month}" 
+											th:value="${month.key}" 
+											th:text="${month.value}">
+									</option>
+								</select>
+							</div>
 						</div>
 
-						<div class="form-group">
-							<p>置き場所の情報(必須)<br><small>都道府県</small></p>
-							<select id="prefectures" name="prefectures" class="mt-0 pull">
-								<option value="">都道府県を選択</option>
-							</select>
-						</div>
-						<div class="form-group">
-							<p><small>市区町村</small></p>
-							<select id="city" name="city" class="mt-0 pull">
-								<option value="">市区町村を選択</option>
-							</select>
-						</div>
 
-						<div class="form-group">
-							<p>カテゴリー(必須)</p>
-							<select name="category" id="category" class="mt-0 pull">
-								<option value="">カテゴリーを選択</option>
-							</select>
-						</div>
+						<div class="row">
+							<div class="col-md-6">
 
-						<div class="form-group">
-							<p>発行年(必須)</p>
-							<select name="year" id="year" class="mt-0 pull">
-								<option value="">発行年を選択</option>
-							</select>
-							<p>発行月(必須)</p>
-							<select name="month" id="month" class="mt-0 pull">
-								<option value="">発行月を選択</option>
-							</select>
-						</div>
-					</div>
-
-
-							<div class="row">
-								<div class="col-md-6">
-
-									<div class="form-group">
-										<p>お店などの情報やコメントなど</p>
-										<textarea id="" name="comment" class="form-control" placeholder="お店などの置き場所に関する情報やコメントなどを記入"></textarea>
-									</div>
-
-									<div class="form-group">
-										<p>写真</p>
-										<label class="btn btn-primary btn-md butan">画像を選択
-											<input style="display: none;" class="input-tag" type="file" id="uploadImg" name="uploadImg" >
-										</label>
-										<p>プレビュー</p>
-										<img src="" id="view" class="preview">
-									</div>
-									
-									<div class="form-group">
-										<input type="submit" class="btn btn-primary btn-md" value="投稿する！">
-									</div>
+								<div class="form-group">
+									<p>お店などの情報やコメントなど</p>
+									<textarea id="" name="comment" class="form-control" placeholder="お店などの置き場所に関する情報やコメントなどを記入"></textarea>
 								</div>
 
+								<div class="form-group">
+									<p>写真</p>
+									<label class="btn btn-primary btn-md butan">画像を選択
+										<input style="display: none;" class="input-tag" type="file" id="uploadImg" name="uploadImg" >
+									</label>
+									<p>プレビュー</p>
+									<img src="" id="view" class="preview">
+									<!-- <input type="text" style="display: none;" name="profilePicture"/> -->
+								</div>
+								
+								<div class="form-group">
+									<input type="submit" class="btn btn-primary btn-md" value="投稿する！">
+								</div>
 							</div>
-						</form>
-					</div>
-					
+						</div>
+					</form>
 				</div>
+			</div>
        	 </div>
     </div>
 
