@@ -72,6 +72,7 @@ public class controller {
 		// 市区町村プルダウン
 		List<cityEntity> city = cityRipository.findAll();
 		mv.addObject("city", city);
+		System.out.println(city);
 
 		// カテゴリープルダウン(keyは0始まり。)
 		List<PullDownCategory> DC =  categoryRipository.findAll();
