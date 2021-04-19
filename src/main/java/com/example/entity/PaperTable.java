@@ -1,5 +1,6 @@
 package com.example.entity;
 
+import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -47,6 +48,12 @@ public class PaperTable {
 
     @Column(columnDefinition="MIDIUMTEXT", name = "uploadImg", nullable = true)
 	private String uploadImg;
+
+    @Column(name="create_date")
+	private Date createDate;
+
+    @Column(name="update_date")
+	private Date updateDate;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable

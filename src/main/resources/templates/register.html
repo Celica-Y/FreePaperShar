@@ -56,10 +56,7 @@
 	<script type="text/javascript" th:src="@{/js/modernizr-2.6.2.min.js}"></script>
 	<!-- jquery -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<!-- 都道府県連動プルダウン　js-->
-	<!-- <script type="text/javascript" th:src="@{/js/city-search.js}"></script> -->
-	<!-- カテゴリーpull-down menu　js -->
-	<!-- <script type="text/javascript" th:src="@{/js/pull-downMenu.js}"></script> -->
+	<script type="text/javascript" th:src="@{/js/pull-downMenu.js}"></script>
 	<!-- 画像の表示 -->
 	<script>
 		$(function(){
@@ -75,7 +72,6 @@
 			});
 		});
 	</script>
-
 
 	</head>
 
@@ -115,7 +111,8 @@
 						<hr>
 					</div>
 
-					<form class="action" id="register-form" method="POST" th:object="${PaperForm}"　action="/resist" enctype="multipart/form-data">
+					<form class="action" id="register-form" method="POST" th:object="${PaperForm}"　action="/resist" enctype="multipart/form-data"
+					th:fragment="Paperform">
 
 						<div class="col-md-6">
 							<div class="form-group">
@@ -125,19 +122,24 @@
 
 							<div class="form-group">
 								<p>置き場所の情報(必須)<br><small>都道府県</small></p>
-								<select id="prefectures" name="prefectures" class="mt-0 pull">
+								<select id="prefectures" class="mt-0 pull">
 									<option value="">都道府県を選択</option>
-									<option th:each="category : ${category}" 
-											th:value="${category.key}" 
-											th:text="${category.value}"
-											th:selected="${color.key == colorCd}">
+									<option th:each="pref : ${pref}" 
+											th:value="${pref.prefCode}" 
+											th:text="${pref.prefName}">
 									</option>
 								</select>
 							</div>
 							<div class="form-group">
 								<p><small>市区町村</small></p>
-								<select id="city" name="city" class="mt-0 pull">
+								<select id="city" class="mt-0 pull">
 									<option value="">市区町村を選択</option>
+									<option th:each="city : ${city}" 
+											th:value="${city.cityCode}" 
+											th:text="${city.cityName}"
+											th:classappend="${city.prefIdId}"
+											>
+									</option>
 								</select>
 							</div>
 
@@ -145,9 +147,9 @@
 								<p>カテゴリー(必須)</p>
 								<select name="category" id="category" class="mt-0 pull">
 									<option value="">カテゴリーを選択</option>
-									<option th:each="category : ${category}" 
-											th:value="${category.key}" 
-											th:text="${category.value}">
+									<option th:each="category: ${category}" 
+											th:value="${category.categoryCode}" 
+											th:text="${category.categoryName}">
 									</option>
 								</select>
 							</div>
@@ -203,7 +205,7 @@
     </div>
 
 	<!-- jQuery -->
-	<!-- <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script> -->
+	<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
 	<!-- Bootstrap -->
 	<script type="text/javascript"　src="@{/js/bootstrap.min.js}"></script>
 	<!-- Waypoints -->

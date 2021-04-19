@@ -4,15 +4,17 @@ import java.util.Calendar;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 import com.example.entity.PullDownCategory;
+import com.example.entity.cityEntity;
+import com.example.entity.prefectureEntity;
+import com.example.ripository.PullDownPrefectureRipository;
 import com.example.ripository.categoryEntityRipository;
+import com.example.ripository.cityEntityRipository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -49,18 +51,35 @@ public class controller {
 	}
 
 // 投稿ページの表示(urlはログイン機能追加後に変更)
-@Autowired
-categoryEntityRipository categoryRipository;
+	@Autowired
+	categoryEntityRipository categoryRipository;
+	
+	@Autowired 
+	PullDownPrefectureRipository prefRipository;
+
+	@Autowired
+	cityEntityRipository cityRipository;
+
 
 	@RequestMapping(value="/regist", method=RequestMethod.GET)
-	public ModelAndView registerGet(@ModelAttribute PullDownCategory DownCategory,
-	 ModelAndView mv) {
-		// カテゴリープルダウン
+	public ModelAndView registerGet(
+				@ModelAttribute PullDownCategory DownCategory,
+				@ModelAttribute prefectureEntity prefEntity,
+				@ModelAttribute cityEntity cityEntity, 
+	 			ModelAndView mv) {
+		List<prefectureEntity> pref =  prefRipository.findAll();
+		mv.addObject("pref", pref);
+		// 市区町村プルダウン
+		List<cityEntity> city = cityRipository.findAll();
+		mv.addObject("city", city);
+
+		// カテゴリープルダウン(keyは0始まり。)
 		List<PullDownCategory> DC =  categoryRipository.findAll();
 		mv.addObject("category", DC);
 		/**
 		 * 発行年プルダウン。
 		 * カレンダーから今年を取得し、１０年分繰り返えしてマップにする。
+		 * (keyは0始まり。)
 		 */
 		Calendar cl = Calendar.getInstance();
 
@@ -75,8 +94,7 @@ categoryEntityRipository categoryRipository;
 		  }
 		mv.addObject("Year", Year);
 
-		
-		//発行月プルダウン(keyは１始まり。その他のマップは０始まり)
+		//発行月プルダウン(keyは１始まり。)
 		Map<String, String> month = new LinkedHashMap<String, String>();
 		for (int i = 1; i <= 12; i++){
 			month.put(String.valueOf(i), String.valueOf(i));
