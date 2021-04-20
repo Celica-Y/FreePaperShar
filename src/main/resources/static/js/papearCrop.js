@@ -1,15 +1,14 @@
-
 $(function() {
-// 会員登録ページの切り抜き
-  var $preview = $('.crop');
-  
-  // 登録画面：画像の読み込みと切り抜きへの表示
+    // 会員登録ページの切り抜き
+      var $preview = $('.crop');
+
+// フリーペーパー登録画面：画像の読み込みと切り抜きへの表示
       function readFile(input) {
         if (input.files && input.files[0]) {
           var reader = new FileReader();
           
           reader.onload = function (e) {
-            $('#upload').addClass('ready');
+            $('#up').addClass('ready');
             $uploadCrop.croppie('bind', {
               url: e.target.result
             }).then(function(){
@@ -27,7 +26,7 @@ $(function() {
         viewport: {
           width: 200,
           height: 200,
-          type: 'circle'
+          // type: 'circle'
         },
         boundary: {
           width: 300,
@@ -36,19 +35,20 @@ $(function() {
         enableExif: true
       });
       
+      
       //croppieのポップアップ 
-      $('#upload').click(function(e) {
-        $('#cropImagePop').fadeIn();
-     });
+    $('#up').click(function(e) {
+      $('#cropImagePop').fadeIn();
+    });
     
     // キャンセル時
     $('.modal-btn-cancel').click(function(e) {
       $('#cropImagePop').hide();
-  });
+    });
 
   
   // プレビューの表示（決定ボタンで確定）
-    $('#upload').on('change', function () { readFile(this); });
+    $('#up').on('change', function () { readFile(this); });
       $('.upload-result').on('click', function (ev) {
         $uploadCrop.croppie('result', {
           type: 'canvas',

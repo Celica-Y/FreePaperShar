@@ -57,22 +57,9 @@
 	<!-- jquery -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script type="text/javascript" th:src="@{/js/pull-downMenu.js}"></script>
-	<!-- 画像の表示 -->
-	<script>
-		$(function(){
-			$('#uploadImg').on('change', function (e) {
-			
-				var reader = new FileReader();
-				reader.onload = function (e) {
-			
-				$("#view").attr('src', e.target.result);
-				}
-		
-				reader.readAsDataURL(e.target.files[0]);	
-			});
-		});
-	</script>
-
+	<!-- croppie crop js-->
+	<script type="text/javascript" th:src="@{/js/papearCrop.js}"></script>
+	
 	</head>
 
     <body>
@@ -186,11 +173,18 @@
 								<div class="form-group">
 									<p>写真</p>
 									<label class="btn btn-primary btn-md butan">画像を選択
-										<input style="display: none;" class="input-tag" type="file" id="uploadImg" name="uploadImg" >
+										<input style="display: none;" class="input-tag" type="file" id="up" />
 									</label>
 									<p>プレビュー</p>
-									<img src="" id="view" class="preview">
-									<!-- <input type="text" style="display: none;" name="profilePicture"/> -->
+									<img id="upload-view">
+									<input type="text" style="display: none;" name="Picture"/>
+									<div id="cropImagePop">
+										<div class="crop-content">
+											<div class="crop"></div>
+											<input type="button" class="modal-btn-cancel btn btn-primary btn-md" value="キャンセル">
+											<input type="button" class="upload-result btn btn-primary btn-md" id="upload-result" value="決定" >
+										</div>
+									</div>
 								</div>
 								
 								<div class="form-group">
@@ -212,6 +206,8 @@
 	<script type="text/javascript" th:src="@{/js/jquery.waypoints.min.js}"></script>
 	<!-- validate js-->
 	<script type="text/javascript" th:src="@{/node_modules/jquery-validation/dist/jquery.validate.js}"></script>
+	<!-- croppie Js-->
+	<script th:src="@{/node_modules/croppie/croppie.js}"></script>
 
 	<!-- MAIN JS -->
 	<script type="text/javascript" th:src="@{/js/main.js}"></script>

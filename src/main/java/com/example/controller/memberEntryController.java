@@ -23,18 +23,21 @@ public class memberEntryController {
     MultipartFile uploadfile, ModelAndView mv) throws Exception {
 	
         /*テストデータ
-            no.6 
             name:     寝蔵
             email:    nezou@gmail.com 
             password: nezou3
+            
+            name:     取り置き
+            email:   torioki@yahoo.co.jp
+            pass:    torioki3
          */
-
+        
         // JSから送られたbase64形式のデータからdata~,を削除。
-        String img = userData.getProfilePicture();
+        String img = userData.getPicture();
+        // System.out.println(img);
         String delims="[,]";
         String[] parts = img.split(delims);
         String imageString = parts[1];
-
         // バイト変換とデコード
         // byte[] def = imageString.getBytes();
         // System.out.println("byte変換確認：" + def);
@@ -45,7 +48,7 @@ public class memberEntryController {
         // String base64str = Base64.getEncoder().encodeToString(bytes);
         // System.out.println("エンコード確認：" + base64str);
 
-        userData.setProfilePicture(imageString);
+        userData.setPicture(imageString);
         userDataRipository.saveAndFlush(userData);
 		return new ModelAndView("redirect:/mypage");
 	}

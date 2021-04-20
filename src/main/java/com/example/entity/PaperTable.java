@@ -47,7 +47,7 @@ public class PaperTable {
 	private String comment;
 
     @Column(columnDefinition="MIDIUMTEXT", name = "uploadImg", nullable = true)
-	private String uploadImg;
+	private String Picture;
 
     @Column(name="create_date")
 	private Date createDate;
