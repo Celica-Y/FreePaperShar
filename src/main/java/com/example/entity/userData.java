@@ -15,13 +15,13 @@ import lombok.ToString;
 
 @Entity
 @Data
-@ToString(exclude = { "password", "profilePicture" })
+@ToString(exclude = { "password", "Picture" })
 @Table(name="userTable")
 public class userData {
 
     @Id 
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column (name="Id")
+	@Column (name="id")
 	private long id;
 
     @Column(name = "userName", length = 16, nullable = true)
@@ -33,11 +33,10 @@ public class userData {
     @Column(name = "password", length = 6, nullable = false)
 	private String password;
 
-    @Column(columnDefinition="TEXT", name = "profilePicture", nullable = true)
-	private String profilePicture;
+    @Column(columnDefinition="MEDIUMTEXT", name = "profilePicture", nullable = true)
+	private String Picture;
 
     @ManyToMany(mappedBy = "user")
     private Set<PaperTable>  paperTable;
-
 
 }

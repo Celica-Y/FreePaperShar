@@ -57,7 +57,7 @@ $(function() {
         }).then(function (resp) {
           // プレビュー画像を送る
           $("#upload-view").attr('src', resp);
-          $('input[name="profilePicture"]').val(resp);
+          $('input[name="Picture"]').val(resp);
           $("#cropImagePop").modal('hide');
           
         });
