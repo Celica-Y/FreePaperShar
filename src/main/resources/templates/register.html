@@ -133,12 +133,11 @@
 							</div>
 							<div class="form-group" disabled>
 								<p><small>市区町村</small></p>
-								<select id="city" name="city" class="mt-0 pull">
-									<option value="">市区町村を選択</option>
+								<select id="city" name="city" class="mt-0 pull" disabled>
 									<option th:each="city : ${city}" 
-											th:data-value="${city.cityCode}" 
+											th:value="${city.cityCode}" 
 											th:text="${city.cityName}"
-											th:data-prefId="${city.prefIdId}"
+											th:prefId="${city.prefIdId}"
 											>
 									</option>
 								</select>

@@ -1,35 +1,29 @@
 $(document).ready(function(){
-// 都道府県をクリックした時に開始し、codeとnameをajaxで送信
-// cityのバリュー受け取り
-var A =$("#city option:selected").data("value");
-// console.log(A);
+ 
+    // プルダウンのoption内容をコピー
+    var pd2 = $("#city option").clone();
 
-
-    // 都道府県が変更されたら発動
-    $('#prefectures').change(function() {
-        // var prefCode = $('#prefectures').attr("class");
-        var prefCode = $('#prefectures option:selected').attr("class");
-		console.log(prefCode);
-
-        var count = $('select[name="city"]').children().length;
-		
-
-        for (var i=0; i<count; i++) {
-			
-			var city = $('select[name="city"] option:eq(' + i + ')');
-			if(city.attr("class") == prefCode) {
-				// 選択した国と同じクラス名だった場合、違う物を削除
-				$(this).not('optgroup,.prefectures').remove();
-				console.log(city);
-				
-				// $('#city').html(city);
-				
-			}
-		}
-    })
+    $("#prefectures").change(function () {
+        // 都道府県のclass取得
+        var lv1Val = $("#prefectures option:selected").attr("class");
+		console.log(lv1Val);
+        // 市区町村のdisabled解除
+        $("#city").removeAttr("disabled");
+        // 市区町そnのoptionを削除
+        $("#city option").remove();
+ 
+        // コピーをを表示
+        $(pd2).appendTo("#city");
+ 
+        // 選択値以外のクラスのoptionを削除
+        var A = $("#city option[prefId != "+lv1Val+"]").remove();
+		// console.log(A);
+        // 都道府県が変わるたびに「▼選択」optionを先頭に表示
+        $("#city").prepend('<option value="" selected="selected">▼市区町村を選択</option>');
+    });
+ 
     
-	});
-//   });
+});
 
 
 
