@@ -7,7 +7,6 @@ import lombok.Data;
 
 @Data
 @Entity
-// @ToString(exclude = {"cityList"})
 @Table(name="PullDownPrefecture")
 public class prefectureEntity {
 
@@ -20,8 +19,5 @@ public class prefectureEntity {
 
     @Column (name="prefName")
     private String prefName;
-
-    // @OneToMany(mappedBy="prefId", fetch = FetchType.EAGER)
-    // private List<cityEntity> cityList;
 
 }

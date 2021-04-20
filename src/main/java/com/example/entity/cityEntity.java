@@ -1,7 +1,5 @@
 package com.example.entity;
 
-import java.util.List;
-
 import javax.persistence.*;
 
 import lombok.Data;
@@ -25,8 +23,4 @@ public class cityEntity {
     @Column (name="prefIdId")
     private long prefIdId;
 
-    
-
-    // @ManyToOne 
-	// private prefectureEntity prefId;
 }
