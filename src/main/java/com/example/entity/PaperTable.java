@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -29,7 +31,7 @@ public class PaperTable {
 	private String PaperName;
 
     @Column(name = "prefectures", length = 50, nullable = false)
-	private String prefectures;
+	private int prefectures;
 
     @Column(name = "city", length = 50, nullable = false)
 	private String city;
@@ -54,6 +56,19 @@ public class PaperTable {
 
     @Column(name="update_date")
 	private Date updateDate;
+
+
+    @PrePersist
+    public void onPrePersist() {
+        setCreateDate(new Date());
+        setUpdateDate(new Date());
+    }
+
+    @PreUpdate
+    public void onPreUpdate() {
+        setUpdateDate(new Date());
+    }
+
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable

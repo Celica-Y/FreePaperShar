@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class JsonModel {
-    private int JsonCode;
-    private String JsonName;
+    private int Code;
+    private String Name;
 }

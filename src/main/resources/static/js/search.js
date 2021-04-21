@@ -67,9 +67,14 @@ $(document).ready(function() {
         $('#prefectureModal')
         var jsonData = {code: data.code, name: data.name}
         var Json = JSON.stringify(jsonData)
-        // console.log(a)
+        console.log(Json)
 
-        // ajaxでspring bootへ送信
+        // ajaxでspring bootへ送信。403エラーが出るため、CSRF対策を行う。
+        var token = $("meta[name='_csrf']").attr("content");
+        var header = $("meta[name='_csrf_header']").attr("content");
+        $(document).ajaxSend(function(e, xhr, options) {
+           xhr.setRequestHeader(header, token);
+        });
         $.ajax({
           type:"POST",
           url:"/search",

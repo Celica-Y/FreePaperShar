@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.multipart.MultipartException;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -18,8 +18,10 @@ public class registerController{
     PaperTableRipository PaperRipositry;
     
     @RequestMapping(value="/regist", method=RequestMethod.POST)
-	public ModelAndView registerPost(@ModelAttribute("PaperForm") PaperTable paper, 
-    MultipartException uploadfile,ModelAndView mv)  throws Exception{
+	public ModelAndView registerPost(
+        @ModelAttribute("PaperForm") PaperTable paper,
+        MultipartFile uploadfile,
+        ModelAndView mv)throws Exception {
 
 
 /**
@@ -28,7 +30,7 @@ public class registerController{
  * 場所：　　　　北海道　札幌市中央区
  * カテゴリー：　　タウン情報誌
  * 発行年月：　　2021/1
- * コメント：　　　取り置きによる、タウン情報誌です。
+ * コメント：　　　取り置きさんによる、タウン情報誌です。
  *            置き場所はおっきーパン屋にありました。
  *            http://*******
  * 
@@ -42,6 +44,7 @@ public class registerController{
  *            ①弘前市＊＊町**番　酒屋キクラゲ
  *            ②弘前市＊町***番*-*  酒店oske
  */
+        
 
         String img = paper.getPicture();
         String delims="[,]";

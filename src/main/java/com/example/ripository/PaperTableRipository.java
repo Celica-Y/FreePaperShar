@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PaperTableRipository extends JpaRepository<PaperTable, Long>{
-    
+    // List<PaperTable> findByPaperName(String PaperName);
 }

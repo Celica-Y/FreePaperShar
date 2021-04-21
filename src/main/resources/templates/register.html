@@ -33,6 +33,9 @@
 	<meta name="twitter:image" content="" />
 	<meta name="twitter:url" content="" />
 	<meta name="twitter:card" content="" />
+	<!-- CSRFトークン対策 -->
+	<meta name="_csrf" th:content="${_csrf.token}"/>
+	<meta name="_csrf_header" th:content="${_csrf.headerName}"/>
 
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 	<link rel="shortcut icon" th:src="@{/favicon.ico}">
@@ -98,8 +101,7 @@
 						<hr>
 					</div>
 
-					<form class="action" id="register-form" method="POST" th:object="${PaperForm}"　action="/resist" enctype="multipart/form-data"
-					th:fragment="Paperform">
+					<form class="action" id="register-form" method="POST" th:object="${PaperForm}"　th:action="@{/regist}">
 
 						<div class="col-md-6">
 							<div class="form-group">
@@ -109,7 +111,7 @@
 
 							<div class="form-group">
 								<p>置き場所の情報(必須)<br><small>都道府県</small></p>
-								<select id="prefectures" class="mt-0 pull prefectures">
+								<select id="prefectures" class="mt-0 pull prefectures"　name="prefectures" th:value="@{prefectures}">
 									<option value="">都道府県を選択</option>
 									<option th:each="pref : ${pref}" 
 											th:value="${pref.prefCode}" 
@@ -122,7 +124,7 @@
 								<p><small>市区町村</small></p>
 								<select id="city" name="city" class="mt-0 pull" disabled>
 									<option th:each="city : ${city}" 
-											th:value="${city.cityCode}" 
+											th:value="${city.cityName}" 
 											th:text="${city.cityName}"
 											th:prefId="${city.prefIdId}"
 											>
@@ -135,7 +137,7 @@
 								<select name="category" id="category" class="mt-0 pull">
 									<option value="">カテゴリーを選択</option>
 									<option th:each="category: ${category}" 
-											th:value="${category.categoryCode}" 
+											th:value="${category.categoryName}" 
 											th:text="${category.categoryName}">
 									</option>
 								</select>
@@ -146,7 +148,7 @@
 								<select name="year" id="year" class="mt-0 pull">
 									<option value="">発行年を選択</option>
 									<option th:each="Year : ${Year}" 
-											th:value="${Year.key}" 
+											th:value="${Year.value}" 
 											th:text="${Year.value}">
 									</option>
 								</select>
@@ -154,7 +156,7 @@
 								<select name="month" id="month" class="mt-0 pull">
 									<option value="">発行月を選択</option>
 									<option th:each="month : ${month}" 
-											th:value="${month.key}" 
+											th:value="${month.value}" 
 											th:text="${month.value}">
 									</option>
 								</select>
