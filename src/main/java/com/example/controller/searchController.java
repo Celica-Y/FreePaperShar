@@ -14,12 +14,13 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class searchController {
     
-    // @Autowired 
-    // PaperTableRipository ptRipository;
+    @Autowired 
+    PaperTableRipository ptRipository;
      
     @RequestMapping(value="/search", method=RequestMethod.POST)
     @ResponseBody
 	public ModelAndView userDataPost(
+        @ModelAttribute("SearchForm") PaperTable paper,
         // @ModelAttribute PaperTable paperTable,
         @RequestBody JsonModel jmodel,
         ModelAndView mv){

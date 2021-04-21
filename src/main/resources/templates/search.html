@@ -62,9 +62,39 @@
 	<!-- serch Js-->
 	<script type="text/javascript" th:src="@{/js/search.js}"></script>
 	<!-- 都道府県連動プルダウン　js-->
-	<script type="text/javascript" th:src="@{/js/city-search.js}"></script>
-	<script type="text/javascript" th:src="@{/js/pull-downMenu.js}"></script>
+	<!-- <script type="text/javascript" th:src="@{/js/city-search.js}"></script>
+	<script type="text/javascript" th:src="@{/js/pull-downMenu.js}"></script> -->
 
+	<script>
+	$(document).ready(function(){
+ 
+		// プルダウンのoption内容をコピー
+		var pd2 = $("#city option").clone();
+
+		$("#prefectures").change(function () {
+			// 都道府県のclass取得
+			var lv1Val = $("#prefectures option:selected").attr("class");
+				console.log(lv1Val);
+
+			// 市区町そnのoptionを削除
+			$("#city option").remove();
+			
+			// コピーをを表示
+			$(pd2).appendTo("#city");
+			
+			// 選択値以外のクラスのoptionを削除
+			var A = $("#city option[prefId != "+lv1Val+"]").remove();
+			// console.log(A);
+			// 都道府県が変わるたびに「▼選択」optionを先頭に表示
+			// $("#city").prepend('<option value="" selected="selected">▼市区町村を選択</option>');
+			$("#city").change(function () {
+			var txt = $('#city option:selected').text();
+			console.log(txt);
+			})
+		})
+ 	});
+
+	</script>
 	</head>
 
     <body>
@@ -115,21 +145,31 @@
 					</div>
 
 					<!-- 詳細検索 -->
-					<form class="action" id="form" method="POST">
+					<form class="action" id="form" method="POST" action="/search" th:object="${SaerchForm}">
 
 							<div class="row">
 								<div class="col-md-6">
 
 									<div class="form-group">
 										<p>都道府県</p>
-										<select id="prefectures" name="prefectures" class="mt-0 pull">
+										<select id="prefectures" class="mt-0 pull prefectures"　name="prefectures" th:value="@{prefectures}">
 											<option value="">都道府県を選択</option>
+											<option th:each="pref : ${pref}" 
+													th:value="${pref.prefCode}" 
+													th:text="${pref.prefName}"
+													th:classappend="${pref.id}">
+											</option>
 										</select>
 
 									<div class="form-group">
 										<p>市区町村</p>
-										<select id="city" name="city" class="mt-0 pull">
-											<option value="">市区町村を選択</option>
+										<select id="city" name="city" class="mt-0 pull" >
+											<option th:each="city : ${city}" 
+													th:value="${city.cityName}" 
+													th:text="${city.cityName}"
+													th:prefId="${city.prefIdId}"
+													>
+											</option>
 										</select>
 									</div>
 
@@ -137,6 +177,10 @@
 										<p>カテゴリー</p>
 										<select name="category" id="category" class="mt-0 pull">
 											<option value="">カテゴリーを選択</option>
+											<option th:each="category: ${category}" 
+													th:value="${category.categoryName}" 
+													th:text="${category.categoryName}">
+											</option>
 										</select>
 									</div>
 
@@ -145,6 +189,10 @@
 										<p>発行年</p>
 										<select name="year" id="year" class="mt-0 pull">
 											<option value="">発行年を選択</option>
+											<option th:each="Year : ${Year}" 
+													th:value="${Year.value}" 
+													th:text="${Year.value}">
+											</option>
 										</select>
 									</div>
 
@@ -152,6 +200,10 @@
 										<p>発行月</p>
 										<select name="month" id="month" class="mt-0 pull">
 											<option value="">発行月を選択</option>
+											<option th:each="month : ${month}" 
+													th:value="${month.value}" 
+													th:text="${month.value}">
+											</option>
 										</select>
 									</div>
 

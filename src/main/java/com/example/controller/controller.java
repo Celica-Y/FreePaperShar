@@ -21,7 +21,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class controller {
-
+	@Autowired
+	categoryEntityRipository categoryRipository;
+	
+	@Autowired 
+	PullDownPrefectureRipository prefRipository;
+	
+	@Autowired
+	cityEntityRipository cityRipository;
+	
 // indexページの表示
 	@RequestMapping(value="/", method=RequestMethod.GET)
 	public ModelAndView indexGet(ModelAndView mv) {
@@ -45,22 +53,52 @@ public class controller {
 
 // 検索ページの表示
 	@RequestMapping(value="/search", method=RequestMethod.GET)
-	public ModelAndView referenceGet(ModelAndView mv) {
+	public ModelAndView referenceGet(
+		@ModelAttribute PullDownCategory DownCategory,
+		@ModelAttribute prefectureEntity prefEntity,
+		@ModelAttribute cityEntity cityEntity, 
+		ModelAndView mv) {
+
+			List<prefectureEntity> pref =  prefRipository.findAll();
+		mv.addObject("pref", pref);
+		// 市区町村プルダウン
+		List<cityEntity> city = cityRipository.findAll();
+		mv.addObject("city", city);
+		// System.out.println(city);
+
+		// カテゴリープルダウン(keyは0始まり。)
+		List<PullDownCategory> DC =  categoryRipository.findAll();
+		mv.addObject("category", DC);
+		/**
+		 * 発行年プルダウン。
+		 * カレンダーから今年を取得し、１０年分繰り返えしてマップにする。
+		 * (keyは0始まり。)
+		 */
+		Calendar cl = Calendar.getInstance();
+
+		Map<String, String> Year = new LinkedHashMap<String, String>();
+
+		int yearData = cl.get(Calendar.YEAR);
+		for (int i = 0 ; i <= 10 ; i++){
+			int YearData = yearData-i ;
+			Year.put(String.valueOf(i), String.valueOf(YearData));
+			// System.out.println(i);
+			// System.out.println(YearData);
+		  }
+		mv.addObject("Year", Year);
+
+		//発行月プルダウン(keyは１始まり。)
+		Map<String, String> month = new LinkedHashMap<String, String>();
+		for (int i = 1; i <= 12; i++){
+			month.put(String.valueOf(i), String.valueOf(i));
+		}
+		mv.addObject("month", month);
+		
 		mv.setViewName("search"); 
 		return mv;
 	}
 
 // 投稿ページの表示(urlはログイン機能追加後に変更)
-	@Autowired
-	categoryEntityRipository categoryRipository;
-	
-	@Autowired 
-	PullDownPrefectureRipository prefRipository;
-
-	@Autowired
-	cityEntityRipository cityRipository;
-
-
 	@RequestMapping(value="/regist", method=RequestMethod.GET)
 	public ModelAndView registerGet(
 				@ModelAttribute PullDownCategory DownCategory,
