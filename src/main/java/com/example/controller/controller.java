@@ -22,13 +22,13 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class controller {
 	@Autowired
-	categoryEntityRepository categoryRipository;
+	categoryEntityRepository categoryRepository;
 	
 	@Autowired 
-	PullDownPrefectureRepository prefRipository;
+	PullDownPrefectureRepository prefRepository;
 	
 	@Autowired
-	cityEntityRepository cityRipository;
+	cityEntityRepository cityRepository;
 	
 // indexページの表示
 	@RequestMapping(value="/", method=RequestMethod.GET)
@@ -59,15 +59,15 @@ public class controller {
 		@ModelAttribute cityEntity cityEntity, 
 		ModelAndView mv) {
 
-			List<prefectureEntity> pref =  prefRipository.findAll();
+			List<prefectureEntity> pref =  prefRepository.findAll();
 		mv.addObject("pref", pref);
 		// 市区町村プルダウン
-		List<cityEntity> city = cityRipository.findAll();
+		List<cityEntity> city = cityRepository.findAll();
 		mv.addObject("city", city);
 		// System.out.println(city);
 
 		// カテゴリープルダウン(keyは0始まり。)
-		List<PullDownCategory> DC =  categoryRipository.findAll();
+		List<PullDownCategory> DC =  categoryRepository.findAll();
 		mv.addObject("category", DC);
 		/**
 		 * 発行年プルダウン。
@@ -105,15 +105,15 @@ public class controller {
 				@ModelAttribute prefectureEntity prefEntity,
 				@ModelAttribute cityEntity cityEntity, 
 	 			ModelAndView mv) {
-		List<prefectureEntity> pref =  prefRipository.findAll();
+		List<prefectureEntity> pref =  prefRepository.findAll();
 		mv.addObject("pref", pref);
 		// 市区町村プルダウン
-		List<cityEntity> city = cityRipository.findAll();
+		List<cityEntity> city = cityRepository.findAll();
 		mv.addObject("city", city);
 		// System.out.println(city);
 
 		// カテゴリープルダウン(keyは0始まり。)
-		List<PullDownCategory> DC =  categoryRipository.findAll();
+		List<PullDownCategory> DC =  categoryRepository.findAll();
 		mv.addObject("category", DC);
 		/**
 		 * 発行年プルダウン。

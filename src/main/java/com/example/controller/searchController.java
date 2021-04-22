@@ -15,13 +15,13 @@ import org.springframework.web.servlet.ModelAndView;
 public class searchController {
     
     @Autowired 
-    PaperTableRepository ptRipository;
+    PaperTableRepository ptRepository;
      
     @RequestMapping(value="/search", method=RequestMethod.POST)
     @ResponseBody
 	public ModelAndView userDataPost(
         @ModelAttribute("SearchForm") PaperTable paper,
-        // @ModelAttribute PaperTable paperTable,
+        @ModelAttribute PaperTable paperTable,
         @RequestBody JsonModel jmodel,
         ModelAndView mv){
         /** 地図クリックから検索。
@@ -29,9 +29,9 @@ public class searchController {
          *  DB検索：Codeとpaper_tableのprefectures_nameが一致する物を探す
          */ 
         
-        // List<PaperTable> paper = ptRipository.findByPaperName(jmodel.getName());
-        // System.out.println(paper);
-        System.out.println(jmodel.getName());
+        // List<PaperTable> p = ptRepository.findByPrefectures(0);
+        // System.out.println(p);
+        System.out.println("ajaxから：" + jmodel.getCode());
 		return new ModelAndView("redirect:/result");
 	}
     

@@ -152,10 +152,10 @@
 
 									<div class="form-group">
 										<p>都道府県</p>
-										<select id="prefectures" class="mt-0 pull prefectures"　name="prefectures" th:value="@{prefectures}">
+										<select id="prefectures" class="mt-0 pull prefectures"　name="prefectures" th:value="${prefectures}">
 											<option value="">都道府県を選択</option>
 											<option th:each="pref : ${pref}" 
-													th:value="${pref.prefCode}" 
+													th:value="${pref.prefName}" 
 													th:text="${pref.prefName}"
 													th:classappend="${pref.id}">
 											</option>

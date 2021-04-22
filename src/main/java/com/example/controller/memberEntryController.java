@@ -1,7 +1,7 @@
 package com.example.controller;
 
 import com.example.entity.userData;
-import com.example.repository.UserDataRepository;
+import com.example.repository.UserDataRipository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class memberEntryController {
 // 会員登録
     @Autowired
-    UserDataRepository userDataRipository;
+    UserDataRipository userDataRipository;
 
     
     @RequestMapping(value="/entry", method=RequestMethod.POST)

@@ -44,10 +44,11 @@ public class registerController{
  *            ①弘前市＊＊町**番　酒屋キクラゲ
  *            ②弘前市＊町***番*-*  酒店oske
  */
-        
+       
 
         String img = paper.getPicture();
         String delims="[,]";
+        // System.out.println(delims);
         String[] parts = img.split(delims);
         String imageString = parts[1];
 

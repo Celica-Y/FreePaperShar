@@ -31,7 +31,7 @@ public class PaperTable {
 	private String PaperName;
 
     @Column(name = "prefectures", length = 50, nullable = false)
-	private int prefectures;
+	private String prefectures;
 
     @Column(name = "city", length = 50, nullable = false)
 	private String city;
@@ -70,7 +70,7 @@ public class PaperTable {
     }
 
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable
-    private Set<userData> user;
+    // @ManyToMany(cascade = CascadeType.ALL)
+    // @JoinTable
+    // private Set<userData> user;
 }

@@ -36,7 +36,7 @@ public class userData {
     @Column(columnDefinition="MEDIUMTEXT", name = "profilePicture", nullable = true)
 	private String Picture;
 
-    @ManyToMany(mappedBy = "user")
-    private Set<PaperTable>  paperTable;
+    // @ManyToMany(mappedBy = "user")
+    // private Set<PaperTable>  paperTable;
 
 }
