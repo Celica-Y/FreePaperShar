@@ -8,9 +8,9 @@ import java.util.Map;
 import com.example.entity.PullDownCategory;
 import com.example.entity.cityEntity;
 import com.example.entity.prefectureEntity;
-import com.example.ripository.PullDownPrefectureRipository;
-import com.example.ripository.categoryEntityRipository;
-import com.example.ripository.cityEntityRipository;
+import com.example.repository.PullDownPrefectureRepository;
+import com.example.repository.categoryEntityRepository;
+import com.example.repository.cityEntityRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,13 +22,13 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class controller {
 	@Autowired
-	categoryEntityRipository categoryRipository;
+	categoryEntityRepository categoryRipository;
 	
 	@Autowired 
-	PullDownPrefectureRipository prefRipository;
+	PullDownPrefectureRepository prefRipository;
 	
 	@Autowired
-	cityEntityRipository cityRipository;
+	cityEntityRepository cityRipository;
 	
 // indexページの表示
 	@RequestMapping(value="/", method=RequestMethod.GET)

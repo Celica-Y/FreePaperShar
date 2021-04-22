@@ -1,4 +1,4 @@
-package com.example.ripository;
+package com.example.repository;
 
 import com.example.entity.prefectureEntity;
 
@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PullDownPrefectureRipository extends JpaRepository<prefectureEntity, Long>{
+public interface PullDownPrefectureRepository extends JpaRepository<prefectureEntity, Long>{
     
 }

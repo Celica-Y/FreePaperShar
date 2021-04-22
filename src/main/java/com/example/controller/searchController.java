@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.example.entity.PaperTable;
 import com.example.model.JsonModel;
-import com.example.ripository.PaperTableRipository;
+import com.example.repository.PaperTableRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class searchController {
     
     @Autowired 
-    PaperTableRipository ptRipository;
+    PaperTableRepository ptRipository;
      
     @RequestMapping(value="/search", method=RequestMethod.POST)
     @ResponseBody

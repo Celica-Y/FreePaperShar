@@ -1,7 +1,7 @@
 package com.example.controller;
 
 import com.example.entity.PaperTable;
-import com.example.ripository.PaperTableRipository;
+import com.example.repository.PaperTableRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class registerController{
 
     @Autowired
-    PaperTableRipository PaperRipositry;
+    PaperTableRepository PaperRipositry;
     
     @RequestMapping(value="/regist", method=RequestMethod.POST)
 	public ModelAndView registerPost(
