@@ -28,10 +28,12 @@ public class searchController {
          *  jqueryからjsonデータを受け取り、
          *  DB検索：Codeとpaper_tableのprefectures_nameが一致する物を探す
          */ 
+        String pref = paper.getPicture();
+        List<PaperTable> p = ptRepository.findByPrefectures(pref);
+        System.out.println(p);
+        // System.out.println("ajaxから：" + jmodel.getCode());
+
         
-        // List<PaperTable> p = ptRepository.findByPrefectures(0);
-        // System.out.println(p);
-        System.out.println("ajaxから：" + jmodel.getCode());
 		return new ModelAndView("redirect:/result");
 	}
     

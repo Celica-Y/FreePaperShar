@@ -95,14 +95,14 @@
                     <hr>
 				</div>
 					
-				<div class="row row-bottom-padded-md">
+				<div class="row row-bottom-padded-md" th:th:each="data:${result}">
 					<div class="col-md-3 col-sm-6 col-padding animate-box" data-animate-effect="fadeInLeft">
 						<div class="entry">
 							<a href="#" class="blog-img"><img th:src="@{/images/NoImageデミグラス.png}" class="img-responsive" alt="Free HTML5 Bootstrap Template by FreeHTML5.co"></a>
 							<div class="desc">
 								<small>カテゴリー</small>
-								<h3><a href="#">フリーペーパーの名前1</a></h3>
-								<p>投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容
+								<h3><a href="#" th:text="@{data.paperName}">フリーペーパーの名前1</a></h3>
+								<p　th:text="@{data.comment}">投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容
 									投稿内容投稿内容投稿内容投稿内容投稿内容</p>
 								<span><img th:src="@{/images/プロフィール画像.png}" class="profile-img-small"><small>　2010/11/15 </small>  <small> 13:00</small></span>
 								<a href="#" class="lead">Read More <i class="icon-arrow-right3"></i></a>
