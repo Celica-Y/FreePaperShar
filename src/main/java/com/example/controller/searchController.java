@@ -5,6 +5,7 @@ import java.util.List;
 import com.example.entity.PaperTable;
 import com.example.model.JsonModel;
 import com.example.repository.PaperTableRepository;
+import com.example.service.paperService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,9 @@ public class searchController {
     
     @Autowired 
     PaperTableRepository ptRepository;
+
+    @Autowired
+    paperService pService;
      
     @RequestMapping(value="/search", method=RequestMethod.POST)
     @ResponseBody
@@ -23,6 +27,7 @@ public class searchController {
         @ModelAttribute("SearchForm") PaperTable paper,
         @ModelAttribute PaperTable paperTable,
         @RequestBody JsonModel jmodel,
+        @RequestParam()
         ModelAndView mv){
         /** 地図クリックから検索。
          *  jqueryからjsonデータを受け取り、
