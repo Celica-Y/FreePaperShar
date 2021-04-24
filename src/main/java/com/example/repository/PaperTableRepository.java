@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PaperTableRepository extends JpaRepository<PaperTable, Long>{
-    List<PaperTable> findByPrefectures(String prefectures);
+    List<PaperTable> findByPrefectures(String pref);
 }

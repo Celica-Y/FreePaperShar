@@ -15,12 +15,14 @@ public class paperService {
     PaperTableRepository ptrepository;
 
     public List<PaperTable> search(
-        long id, String PaperName,
-        String prefectures, String city, 
-        String category,String year,
-        String month, String comment) {
+        String prefectures
+        // String city, 
+        // String category, 
+        // int year,
+        // int month
+        ) {
 
-        List<PaperTable> result = ptrepository.findAll();
-        return result;
-    }
+            List<PaperTable> result = ptrepository.findAll();
+            return result;
+        }
 }

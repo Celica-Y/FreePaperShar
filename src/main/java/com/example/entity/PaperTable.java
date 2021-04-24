@@ -40,10 +40,10 @@ public class PaperTable {
 	private String category;
 
     @Column(name = "year", length = 50, nullable = false)
-	private String year;
+	private int year;
 
     @Column(name = "month", length = 50, nullable = false)
-	private String month;
+	private int month;
 
     @Column(name = "comment", length = 200, nullable = true)
 	private String comment;
