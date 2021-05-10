@@ -57,44 +57,7 @@
 	<script type="text/javascript" th:src="@{/js/modernizr-2.6.2.min.js}"></script>
 	<!-- jquery -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	
-	<script type="text/javascript" th:src="@{/js/jmap.js}"></script>
-	<!-- serch Js-->
-	<script type="text/javascript" th:src="@{/js/search.js}"></script>
-	<!-- 都道府県連動プルダウン　js-->
-	<!-- <script type="text/javascript" th:src="@{/js/city-search.js}"></script>
-	<script type="text/javascript" th:src="@{/js/pull-downMenu.js}"></script> -->
 
-	<script>
-	$(document).ready(function(){
- 
-		// プルダウンのoption内容をコピー
-		var pd2 = $("#city option").clone();
-
-		$("#prefectures").change(function () {
-			// 都道府県のclass取得
-			var lv1Val = $("#prefectures option:selected").attr("class");
-				console.log(lv1Val);
-
-			// 市区町そnのoptionを削除
-			$("#city option").remove();
-			
-			// コピーをを表示
-			$(pd2).appendTo("#city");
-			
-			// 選択値以外のクラスのoptionを削除
-			var A = $("#city option[prefId != "+lv1Val+"]").remove();
-			// console.log(A);
-			// 都道府県が変わるたびに「▼選択」optionを先頭に表示
-			// $("#city").prepend('<option value="" selected="selected">▼市区町村を選択</option>');
-			$("#city").change(function () {
-			var txt = $('#city option:selected').text();
-			console.log(txt);
-			})
-		})
- 	});
-
-	</script>
 	</head>
 
     <body>
@@ -132,18 +95,8 @@
 						</div>
 						<hr>
 					</div>
-
-				<form id="register-form" method="POST" th:object="${SearchForm}"　action="/search">
-					<div class="col-md-6">
-						<div class="map">
-							<div id="jmap">
-								<div class="jmap-infobox">
-									<p><i class="icon-search3"></i>
-									地図から置き場所を検索(リンクページに飛びます)</p>
-								</div>
-							</div>
-						</div>
-					</div>
+<!-- 
+				<form id="register-form" method="POST" th:object="${SearchForm}"　action="/search"> -->
 
 					<!-- 詳細検索 -->
 					<form class="action" id="form" method="POST" action="/search" th:object="${SaerchForm}">
@@ -161,6 +114,7 @@
 													th:classappend="${pref.id}">
 											</option>
 										</select>
+									</div>
 
 									<div class="form-group">
 										<p>市区町村</p>
@@ -184,46 +138,120 @@
 											</option>
 										</select>
 									</div>
-
-
-									<div class="form-group">
-										<p>発行年</p>
-										<select name="year" id="year" class="mt-0 pull">
-											<option value="">発行年を選択</option>
-											<option th:each="Year : ${Year}" 
-													th:value="${Year.value}" 
-													th:text="${Year.value}">
-											</option>
-										</select>
-									</div>
-
-									<div class="form-group">
-										<p>発行月</p>
-										<select name="month" id="month" class="mt-0 pull">
-											<option value="">発行月を選択</option>
-											<option th:each="month : ${month}" 
-													th:value="${month.value}" 
-													th:text="${month.value}">
-											</option>
-										</select>
-									</div>
-
-									<div class="form-group">
-										<p>フリーワード</p>
-										<input type="search" class="form-control" placeholder="キーワードを入力">
-									</div>
-									
-									<div class="form-group">
-										<input type="submit" class="btn btn-primary btn-md" value="検索">
-									</div>
 								</div>
+
+
+							<div class="col-md-6">
+								<div class="form-group">
+									<p>発行年</p>
+									<select name="year" id="year" class="mt-0 pull">
+										<option value="">発行年を選択</option>
+										<option th:each="Year : ${Year}" 
+												th:value="${Year.value}" 
+												th:text="${Year.value}">
+										</option>
+									</select>
+								</div>
+
+								<div class="form-group">
+									<p>発行月</p>
+									<select name="month" id="month" class="mt-0 pull">
+										<option value="">発行月を選択</option>
+										<option th:each="month : ${month}" 
+												th:value="${month.value}" 
+												th:text="${month.value}">
+										</option>
+									</select>
+								</div>
+
+								<div class="form-group">
+									<p>フリーワード</p>
+									<input type="search" class="form-control" placeholder="キーワードを入力">
+								</div>
+								
+								<div class="form-group">
+									<input type="submit" class="btn btn-primary btn-md" value="検索">
+								</div>
+							</div>
+
 
 							</div>
 						</form>
 					</div>
 				</form>	
+			</div>
+
+
+			<div id="fh5co-main">
+				<div class="fh5co-narrow-content animate-box" data-animate-effect="fadeInLeft">
+					<hr>
+					<div class="row">
+						<h2>検索結果</h2>
+						<hr>
+					</div>
+					<form th:each="data:${result}" action="result" method="POST">
+						<div class="row row-bottom-padded-md">
+							<div class="col-md-3 col-sm-6 col-padding animate-box" data-animate-effect="fadeInLeft">
+								<div class="entry">
+									<a href="#" class="blog-img"><img th:src="@{/images/NoImageデミグラス.png}" class="img-responsive" alt="Free HTML5 Bootstrap Template by FreeHTML5.co"></a>
+									<div class="desc">
+										<small>カテゴリー</small>
+										<h3><a href="#" th:text="@{data.paperName}">フリーペーパーの名前1</a></h3>
+										<p　th:text="@{data.comment}">投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容
+											投稿内容投稿内容投稿内容投稿内容投稿内容</p>
+										<span><img th:src="@{/images/プロフィール画像.png}" class="profile-img-small"><small>　2010/11/15 </small>  <small> 13:00</small></span>
+										<a href="#" class="lead">Read More <i class="icon-arrow-right3"></i></a>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-3 col-sm-6 col-padding animate-box" data-animate-effect="fadeInLeft">
+								<div class="entry">
+									<a href="#" class="blog-img"><img th:src="@{/images/NoImageデミグラス.png}" class="img-responsive" alt="Free HTML5 Bootstrap Template by FreeHTML5.co"></a>
+									<div class="desc">
+										<small>カテゴリー</small>
+										<h3><a href="#">フリーペーパーの名前2</a></h3>
+										<p>投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容
+											投稿内容投稿内容投稿内容投稿内容投稿内容</p>
+										<span><img th:src="@{/images/プロフィール画像.png}" class="profile-img-small"><small>　2010/11/15 </small>  <small> 13:00</small></span>
+										<a href="#" class="lead">Read More <i class="icon-arrow-right3"></i></a>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-3 col-sm-6 col-padding animate-box" data-animate-effect="fadeInLeft">
+								<div class="entry">
+									<a href="#" class="blog-img"><img th:src="@{/images/NoImageデミグラス.png}" class="img-responsive" alt="Free HTML5 Bootstrap Template by FreeHTML5.co"></a>
+									<div class="desc">
+										<small>カテゴリー</small>
+										<h3><a href="#">フリーペーパーの名前3</a></h3>
+										<p>投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容
+											投稿内容投稿内容投稿内容投稿内容投稿内容</p>
+										<span><img th:src="@{/images/プロフィール画像.png}" class="profile-img-small"><small>　2010/11/15 </small>  <small> 13:00</small></span>
+										<a href="#" class="lead">Read More <i class="icon-arrow-right3"></i></a>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-3 col-sm-6 col-padding animate-box" data-animate-effect="fadeInLeft">
+								<div class="entry">
+									<a href="#" class="blog-img"><img th:src="@{/images/NoImageデミグラス.png}" class="img-responsive" alt="Free HTML5 Bootstrap Template by FreeHTML5.co"></a>
+									<div class="desc">
+										<small>カテゴリー</small>
+										<h3><a href="#">フリーペーパーの名前4</a></h3>
+										<p>投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容
+											投稿内容投稿内容投稿内容投稿内容投稿内容</p>
+										<span><img th:src="@{/images/プロフィール画像.png}" class="profile-img-small"><small>　2010/11/15 </small>  <small> 13:00</small></span>
+										<a href="#" class="lead">Read More <i class="icon-arrow-right3"></i></a>
+									</div>
+								</div>
+							</div>
+						
+						</div>
+					</form>
 				</div>
-       	 </div>
+			</div>
+
+       	</div>
+
+			
     </div>
 
 	<!-- jQuery -->
