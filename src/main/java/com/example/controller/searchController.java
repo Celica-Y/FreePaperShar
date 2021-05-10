@@ -6,18 +6,22 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import com.example.entity.PaperTable;
 import com.example.entity.PullDownCategory;
 import com.example.entity.cityEntity;
 import com.example.entity.prefectureEntity;
-import com.example.repository.PaperTableRepository;
 import com.example.repository.PullDownPrefectureRepository;
 import com.example.repository.categoryEntityRepository;
 import com.example.repository.cityEntityRepository;
-
+import com.example.repository.paperRepository;
+import com.example.service.paperDao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -34,7 +38,9 @@ public class searchController {
 	cityEntityRepository cityRepository;
 
     @Autowired
-    PaperTableRepository pRepository;
+    paperRepository pRepository;
+
+    paperDao dao;
     
 
     @RequestMapping(value="/search", method=RequestMethod.GET)
@@ -84,28 +90,23 @@ public class searchController {
 
      
     @RequestMapping(value="/search", method=RequestMethod.POST)
+    @Transactional(readOnly=false)
 	public ModelAndView userDataPost(
         ModelAndView mv,
-        @ModelAttribute PaperTable pTable,
-        @RequestParam("PaperName") String PaperName,
-        @RequestParam("prefectures") String prefectures,
-        @RequestParam("city") String city,
-        @RequestParam("category") String category,
-        @RequestParam("year") int year,
-        @RequestParam("month") int month,
-        @RequestParam("comment") String comment,
-        @RequestParam("Picture") String Picture,
-        @RequestParam("updateDate") Date updateDate
-        ){
-            
-            mv.addObject("category", category);
-            mv.addObject("paperName", PaperName);
-            mv.addObject("comment", comment);
-            mv.addObject("updateDate", updateDate);
-            
-            
-           
+        @ModelAttribute PaperTable pTable){
 
+        
+        
+        if ("".equals(pTable.getPaperName()) && "".equals(pTable.getPrefectures())
+            && "".equals(pTable.getCity()) && "".equals(pTable.getCategory()) && "".equals(pTable.getMonth()) && "".equals(pTable.getYear())) {
+            return new ModelAndView("redirect:/search");
+		} else {
+		    Iterable result= dao.search(pTable.getPaperName(), pTable.getPrefectures(), pTable.getCity(),pTable.getCategory(), pTable.getMonth(),pTable.getYear());
+            mv.addObject("list",result);	
+		}
+		mv.addObject("Model",pTable);
+        mv.setViewName("search");
+        return mv;
 
         /**
          * 画像データはbase64にエンコードしてhtmlに渡す
@@ -113,8 +114,7 @@ public class searchController {
          * th:src="${base64data-profImg}"
          */
         
-            mv.setViewName("search");
-            return mv;
+            
 		// return new ModelAndView("redirect/search");
 	}
 
