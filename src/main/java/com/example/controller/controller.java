@@ -51,52 +51,7 @@ public class controller {
 		return mv;
 	}
 
-// 検索ページの表示
-	@RequestMapping(value="/search", method=RequestMethod.GET)
-	public ModelAndView referenceGet(
-		@ModelAttribute PullDownCategory DownCategory,
-		@ModelAttribute prefectureEntity prefEntity,
-		@ModelAttribute cityEntity cityEntity, 
-		ModelAndView mv) {
-
-		List<prefectureEntity> pref =  prefRepository.findAll();
-		mv.addObject("pref", pref);
-		// 市区町村プルダウン
-		List<cityEntity> city = cityRepository.findAll();
-		mv.addObject("city", city);
-		// System.out.println(city);
-
-		// カテゴリープルダウン(keyは0始まり。)
-		List<PullDownCategory> DC =  categoryRepository.findAll();
-		mv.addObject("category", DC);
-		/**
-		 * 発行年プルダウン。
-		 * カレンダーから今年を取得し、１０年分繰り返えしてマップにする。
-		 * (keyは0始まり。)
-		 */
-		Calendar cl = Calendar.getInstance();
-
-		Map<String, String> Year = new LinkedHashMap<String, String>();
-
-		int yearData = cl.get(Calendar.YEAR);
-		for (int i = 0 ; i <= 10 ; i++){
-			int YearData = yearData-i ;
-			Year.put(String.valueOf(i), String.valueOf(YearData));
-			// System.out.println(i);
-			// System.out.println(YearData);
-		  }
-		mv.addObject("Year", Year);
-
-		//発行月プルダウン(keyは１始まり。)
-		Map<String, String> month = new LinkedHashMap<String, String>();
-		for (int i = 1; i <= 12; i++){
-			month.put(String.valueOf(i), String.valueOf(i));
-		}
-		mv.addObject("month", month);
-		
-		mv.setViewName("search"); 
-		return mv;
-	}
+// 検索ページの表示はサーチコントローラーへ
 
 // 投稿ページの表示(urlはログイン機能追加後に変更)
 	@RequestMapping(value="/regist", method=RequestMethod.GET)
@@ -159,6 +114,12 @@ public class controller {
 		return mv;
 	}
 
+// 検索結果一覧表示
+	@RequestMapping(value="/result", method=RequestMethod.GET)
+	public ModelAndView searchResultGet(ModelAndView mv) {
+		mv.setViewName("searchResult"); 
+		return mv;
+	}
 
 // 投稿一覧の表示
 	@RequestMapping(value="/post", method=RequestMethod.GET)
@@ -166,6 +127,7 @@ public class controller {
 		mv.setViewName("postList"); 
 		return mv;
 	}
+
 
 // 退会ページの表示
 	@RequestMapping(value="/withd", method=RequestMethod.GET)
