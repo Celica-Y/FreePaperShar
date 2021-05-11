@@ -16,6 +16,7 @@ import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.ToString;
 
 @Entity
 @Data
@@ -28,7 +29,7 @@ public class PaperTable {
 	private long id;
 
     @Column(name = "PaperName", length = 50, nullable = false)
-	private String PaperName;
+	private String paperName;
 
     @Column(name = "prefectures", length = 50, nullable = false)
 	private String prefectures;
@@ -39,6 +40,7 @@ public class PaperTable {
     @Column(name = "category", length = 50, nullable = false)
 	private String category;
 
+    
     @Column(name = "year", length = 50, nullable = false)
 	private int year;
 

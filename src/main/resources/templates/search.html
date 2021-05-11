@@ -57,7 +57,6 @@
 	<script type="text/javascript" th:src="@{/js/modernizr-2.6.2.min.js}"></script>
 	<!-- jquery -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script type="text/javascript" th:src="@{/js/pull-downMenu.js}"></script>
 
 	</head>
 
@@ -98,7 +97,7 @@
 					</div>
 
 					<!-- 詳細検索 -->
-					<form class="action" id="form" method="POST" action="/search" th:object="${Model}">
+					<form class="action" id="form" method="POST" th:action="@{/search}">
 						
 						<div class="row">
 							<div class="col-md-6">
@@ -111,69 +110,35 @@
 												th:value="${pref.prefName}" 
 												th:text="${pref.prefName}"
 												th:classappend="${pref.id}"
-												th:selected="${pref.prefName} == ${prefectures}">
-										</option>
-									</select>
-								</div>
-								<div class="form-group" disabled>
-									<p><small>市区町村</small></p>
-									<select id="city" name="city" class="mt-0 pull" disabled>
-										<option th:each="city : ${city}" 
-												th:value="${city.cityName}" 
-												th:text="${city.cityName}"
-												th:prefId="${city.prefIdId}"
 												>
 										</option>
 									</select>
 								</div>
 
 								<div class="form-group">
-									<p>カテゴリー</p>
-									<select id="category" class="mt-0 pull" name="category" th:value="${category}">
+									<p><small>カテゴリー</small></p>
+									<select id="prefectures" class="mt-0 pull prefectures" name="category">
 										<option value="">カテゴリーを選択</option>
-										<option th:each="category: ${category}" 
-												th:value="${category.categoryName}" 
-												th:text="${category.categoryName}">
+										<option th:each="cate : ${cate}" 
+												th:value="${cate.categoryName}" 
+												th:text="${cate.categoryName}"
+												>
 										</option>
 									</select>
+								</div>
+								<div class="form-group">
+									<p>フリーペーパーの名前</p>
+									<input type="search" class="form-control" placeholder="フリーペーパー名を入力" name="PaperName" th:valu="${PaperName}">
 								</div>
 							</div>
-
-							<div class="col-md-6">
-								<div class="form-group">
-									<p>発行年</p>
-									<select id="year" class="mt-0 pull" name="year" th:value="${year}">
-										<option value="">発行年を選択</option>
-										<option th:each="Year : ${Year}" 
-												th:value="${Year.value}" 
-												th:text="${Year.value}">
-										</option>
-									</select>
-								</div>
-
-								<div class="form-group">
-									<p>発行月</p>
-									<select id="month" class="mt-0 pull" name="month" th:value="${month}">
-										<option value="">発行月を選択</option>
-										<option th:each="month : ${month}" 
-												th:value="${month.value}" 
-												th:text="${month.value}">
-										</option>
-									</select>
-								</div>
-
-								<div class="form-group">
-									<p>フリーワード</p>
-									<input type="search" class="form-control" placeholder="キーワードを入力" name="PaperName" th:valu="${PaperName}">
-								</div>
 								
 								<div class="form-group">
 									<input type="submit" class="btn btn-primary btn-md" value="検索">
 								</div>
 							</div>
-
-
 						</div>
+					</form>
+
 
 						<hr>
 						<div class="fh5co-narrow-content animate-box" data-animate-effect="fadeInLeft">
@@ -200,18 +165,30 @@
 									</div>
 								</div> -->
 								
+								<h4>
+								<strong th:if="${size}" th:text="${size}"></strong>
+								<strong th:unless="${size}">0</strong>
+								<span>件</span>
+								
+								</h4>
 								<table>
-									<tr><th>名前</th><th>カテゴリー</th>
+									<tr><th>名前</th>
+										<th>カテゴリー</th>
+										<th>都道府県</th>
+										
+									</tr>
 									<tr th:each="obj : ${list}">
-										<td align="left" th:text="${obj.PaperName}"></td>
-										<td align="left" th:text="${obj.category}"></td>
+										<td th:text="${obj.PaperName}"></td>
+										<td th:text="${obj.category}"></td>
+										<td th:text="${obj.prefectures}"></td>
+										
 									</tr>
 								</table>
 									
 							
 					
 						</div>
-					</form>
+					
 
 				</div>
 			</div>
