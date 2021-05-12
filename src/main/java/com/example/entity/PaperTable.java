@@ -28,7 +28,7 @@ public class PaperTable {
 	@Column (name="Id")
 	private long id;
 
-    @Column(name = "PaperName", length = 50, nullable = false)
+    @Column(name = "paperName", length = 50, nullable = false)
 	private String paperName;
 
     @Column(name = "prefectures", length = 50, nullable = false)

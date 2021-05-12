@@ -128,7 +128,7 @@
 								</div>
 								<div class="form-group">
 									<p>フリーペーパーの名前</p>
-									<input type="search" class="form-control" placeholder="フリーペーパー名を入力" name="PaperName" th:valu="${PaperName}">
+									<input type="search" class="form-control" placeholder="フリーペーパー名を入力" name="paperName" >
 								</div>
 							</div>
 								
@@ -178,7 +178,7 @@
 										
 									</tr>
 									<tr th:each="obj : ${list}">
-										<td th:text="${obj.PaperName}"></td>
+										<td th:text="${obj.paperName}"></td>
 										<td th:text="${obj.category}"></td>
 										<td th:text="${obj.prefectures}"></td>
 										

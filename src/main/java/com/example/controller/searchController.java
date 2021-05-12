@@ -63,7 +63,7 @@ public class searchController {
     @RequestMapping(value="/search", method=RequestMethod.POST)
 	public ModelAndView search(
         ModelAndView mv,
-        @RequestParam(name="PaperName") String PaperName,
+        @RequestParam(name="paperName") String paperName,
 		@RequestParam(name="prefectures") String prefectures,
 		@RequestParam(name="category") String categoryName){
 		 	mv.setViewName("search"); 
@@ -79,26 +79,38 @@ public class searchController {
 			// 		mv.addObject("prefectures",prefectures);
 			// 		mv.addObject("category",category);
 			// 	}else 
-				if(PaperName != null) { //名前入力・曖昧検索
-					list  = pRepository.findByPaperNameContaining(PaperName);
-					mv.addObject("size",list.size());
-					mv.addObject("prefectures",prefectures);
-					mv.addObject("PaperName",PaperName);
+				// if(paperName != null) { //名前入力・曖昧検索
+				// 	list  = pRepository.findByPaperName(paperName);
+				// 	mv.addObject("size",list.size());
+				// 	mv.addObject("prefectures",prefectures);
+				// 	mv.addObject("paperName",paperName);
+				// }
+
+				if(prefectures != null) {
+					if(categoryName != null){//都道府県とカテゴリー/一致
+						list  = pRepository.findByPrefecturesAndCategory(prefectures, categoryName);
+						mv.addObject("size",list.size());
+						mv.addObject("prefectures",prefectures);
+						mv.addObject("category",categoryName);
+					}else if(paperName != null){//都道府県とペーパー名/一致・曖昧検索
+						list  = pRepository.findByPrefecturesAndPaperName(prefectures, paperName);
+						mv.addObject("size",list.size());
+						mv.addObject("prefectures",prefectures);
+						mv.addObject("paperName",paperName);
+					}
+				// }else{//都道府県のみ/一致
+				// 	list  = pRepository.findByPrefectures(prefectures);
+				// 	mv.addObject("size",list.size());
+				// 	mv.addObject("prefectures",prefectures);
+				// 	mv.addObject("PaperName",PaperName);
 				}
 
-				if(prefectures != null) { //都道府県・一致
-					list  = pRepository.findByPrefectures(prefectures);
-					mv.addObject("size",list.size());
-					mv.addObject("prefectures",prefectures);
-					mv.addObject("PaperName",PaperName);
-				}
-
-				if(categoryName != null) { //カテゴリ・一致
-					list  = pRepository.findByCategory(categoryName);
-					mv.addObject("size",list.size());
-					mv.addObject("category",categoryName);
-					mv.addObject("PaperName",PaperName);
-				}
+				// if(categoryName != null) { //カテゴリ・一致
+				// 	list  = pRepository.findByCategory(categoryName);
+				// 	mv.addObject("size",list.size());
+				// 	mv.addObject("category",categoryName);
+				// 	mv.addObject("PaperName",PaperName);
+				// }
 			// 	else {		// エリアだけ入力
 			// 		list = pRepository.findByPrefectures(prefectures);
 			// 		mv.addObject("size",list.size());
