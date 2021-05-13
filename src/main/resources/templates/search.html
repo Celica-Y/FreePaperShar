@@ -155,15 +155,15 @@
 								
 									<div class="entry serch-rsl col-md-3 col-sm-6 col-padding animate-box" data-animate-effect="fadeInLeft" th:each="obj : ${list}">
 										<a href="#" class="blog-img">
-											<img th:src="@{images/NoImageデミグラス.png}" class="img-responsive" alt="Free HTML5 Bootstrap Template by FreeHTML5.co" >
+											<img th:if="${obj.image}" th:src="|data:image/jpeg;base64,${obj.image}|" class="img-responsive" alt="Free HTML5 Bootstrap Template by FreeHTML5.co" >
 										</a> 
 										<div class="desc">
 											<small th:text="${obj.category}">カテゴリー</small>
 											<h3><a href="#" th:text="${obj.paperName}">フリーペーパーの名前1</a></h3>
 											<p th:text="${obj.comment}">投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容</p>
 											<span>
-												<!-- <img class="profile-img-small" h:unless="${obj.image}" th:src="@{/img/noimage.jpg}" >
-												<img class="profile-img-small" th:if="${obj.Picture}" th:src="|data:image/jpeg;base64,${pdata.image}|"> -->
+												<!-- <img class="profile-img-small" h:unless="${obj.image}" th:src="@{/img/noimage.jpg}" > -->
+												<!-- <img class="profile-img-small" th:if="${obj.Picture}" th:src="|data:image/jpeg;base64,${obj.Picture}|"> -->
 												<small th:text="${obj.prefectures}">　都道府県 </small>
 												<small th:text="${#dates.format(obj.updateDate, 'yyyy/MM/dd HH:mm:ss')}">　時間 </small>
 											</span>

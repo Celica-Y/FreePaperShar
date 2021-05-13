@@ -46,13 +46,13 @@ public class registerController{
  */
        
 
-        String img = paper.getPicture();
+        String img = paper.getImage();
         String delims="[,]";
         // System.out.println(delims);
         String[] parts = img.split(delims);
         String imageString = parts[1];
 
-        paper.setPicture(imageString);
+        paper.setImage(imageString);
         PaperRipositry.saveAndFlush(paper);
         return new ModelAndView("redirect:/post");
     }
