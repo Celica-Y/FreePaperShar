@@ -7,7 +7,6 @@ import com.example.entity.PaperTable;
 import com.example.entity.PullDownCategory;
 import com.example.entity.prefectureEntity;
 import com.example.repository.PullDownPrefectureRepository;
-import com.example.repository.UserDataRipository;
 import com.example.repository.categoryEntityRepository;
 import com.example.repository.peperSearchRepository;
 
