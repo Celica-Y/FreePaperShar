@@ -1299,4 +1299,9 @@ th, td{
   display: flex;
   justify-content: center;
 }
+
+.serch-rsl{
+  width: 25% !important;
+}
+
 /*# sourceMappingURL=style.css.map */
