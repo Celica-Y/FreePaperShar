@@ -6,11 +6,9 @@ import java.util.List;
 import com.example.entity.PaperTable;
 import com.example.entity.PullDownCategory;
 import com.example.entity.prefectureEntity;
-import com.example.entity.userData;
 import com.example.repository.PullDownPrefectureRepository;
 import com.example.repository.UserDataRipository;
 import com.example.repository.categoryEntityRepository;
-import com.example.repository.paperRepository;
 import com.example.repository.peperSearchRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,9 +28,6 @@ public class searchController {
 
     @Autowired
     peperSearchRepository pRepository;
-	
-	@Autowired
-    UserDataRipository userDataRipository;
 
 
     @RequestMapping(value="/search", method=RequestMethod.GET)
@@ -58,15 +53,11 @@ public class searchController {
         ModelAndView mv,
 		@RequestParam(name = "prefectures", required = false) String prefectures,
 		@RequestParam(name ="category", required = false) String categoryName,
-		@RequestParam(name ="paperName", required = false) String paperName,
-		@RequestParam("userName") String userName,
-		@RequestParam("Picture") String picture
+		@RequestParam(name ="paperName", required = false) String paperName
 		){
-	
+			
 			mv.setViewName("search"); 
 			List<PaperTable> list = new ArrayList<PaperTable>();
-			List<userData> u = userDataRipository.findByUserName(userName);
-// 検索結果にユーザー情報を入れる
 
 			if(prefectures!=""){
 				if(categoryName!=""){//都道府県とカテゴリ
@@ -74,6 +65,7 @@ public class searchController {
 					mv.addObject("size", list.size());
 					mv.addObject("prefectures", prefectures);
 					mv.addObject("categoryName", categoryName);
+					mv.addObject("picture", categoryName);
 					System.out.println("都道府県とカテゴリ");
 
 				}else if(paperName!=""){//都道府県とフリペ名

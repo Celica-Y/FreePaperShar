@@ -6,10 +6,10 @@ import java.util.List;
 import java.util.Map;
 
 import com.example.entity.PullDownCategory;
-import com.example.entity.cityEntity;
 import com.example.entity.prefectureEntity;
 import com.example.repository.PullDownPrefectureRepository;
 import com.example.repository.categoryEntityRepository;
+import com.example.repository.cityEntity;
 import com.example.repository.cityEntityRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;

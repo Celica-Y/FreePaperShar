@@ -163,41 +163,18 @@
 											<p th:text="${obj.comment}">投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容</p>
 											<span>
 												<!-- <img class="profile-img-small" h:unless="${obj.image}" th:src="@{/img/noimage.jpg}" > -->
-												<!-- <img class="profile-img-small" th:if="${obj.Picture}" th:src="|data:image/jpeg;base64,${obj.Picture}|"> -->
+											
+												<!-- <img class="profile-img-small" th:if="${obj.picture}" th:src="|data:image/jpeg;base64,${obj.picture}|"> -->
+
 												<small th:text="${obj.prefectures}">　都道府県 </small>
 												<small th:text="${#dates.format(obj.updateDate, 'yyyy/MM/dd HH:mm:ss')}">　時間 </small>
 											</span>
 											<a href="#" class="lead">Read More <i class="icon-arrow-right3"></i></a>
 										</div>
 									</div>
-
-									
-								
-								<!-- <h4>
-								<strong th:if="${size}" th:text="${size}"></strong>
-								<strong th:unless="${size}">0</strong>
-								<span>件</span>
-								<strong th:text="${msg}"></strong>
-								</h4>
-								<table>
-									<tr><th>名前</th>
-										<th>カテゴリー</th>
-										<th>都道府県</th>
-										
-									</tr>
-									<tr th:each="obj : ${list}">
-										<td th:text="${obj.paperName}"></td>
-										<td th:text="${obj.category}"></td>
-										<td th:text="${obj.prefectures}"></td>
-										
-									</tr>
-								</table> -->
-									
-							
 					
 							</div>
-					
-
+				
 				</div>
 			</div>
 
