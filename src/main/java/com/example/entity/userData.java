@@ -30,7 +30,7 @@ public class userData {
     @Column(name = "Email", length =120, nullable = false, unique = true)
 	private String Email;
 
-    @Column(name = "password", length = 6, nullable = false)
+    @Column(name = "password", length = 255, nullable = false)
 	private String password;
 
     @Column(columnDefinition="MEDIUMTEXT", name = "profilePicture", nullable = true)
@@ -38,5 +38,4 @@ public class userData {
 
     @ManyToMany(mappedBy = "user")
     private Set<PaperTable>  paperTable;
-
 }
