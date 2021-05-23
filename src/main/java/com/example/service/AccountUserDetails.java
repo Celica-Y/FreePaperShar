@@ -1,37 +1,42 @@
-package com.example.model;
+package com.example.service;
 
 import java.util.Collection;
 
 import com.example.entity.userData;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 
 public class AccountUserDetails implements UserDetails{
-    private final userData user;
+    private final userData userData;
 
-    public AccountUserDetails(userData user) {
-        this.user = user;
+    public AccountUserDetails(userData userData) {
+        this.userData = userData;
     }
     
     public userData getUser() { 
-        return user;
+        return userData;
     }
 
-    public String getEmail() { 
-        return this.user.getEmail();
+    public String getName() { 
+        return this.userData.getEmail();
     }
 
 
+    // @Override
+    // public Collection<? extends GrantedAuthority> getAuthorities() { // ユーザに与えられている権限リストを返却するメソッド
+    //     return AuthorityUtils.createAuthorityList("ROLE_" + this.userData.getRoleName());
+    // }
 
     @Override
     public String getPassword() { 
-        return this.user.getPassword();
+        return this.userData.getPassword();
     }
 
     @Override
     public String getUsername() { 
-        return this.user.getUserName();
+        return this.userData.getUserName();
     }
 
     @Override
@@ -54,9 +59,5 @@ public class AccountUserDetails implements UserDetails{
         return true;
     }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        // TODO Auto-generated method stub
-        return null;
-    }
+    
 }

@@ -16,6 +16,7 @@ public class registerController{
 
     @Autowired
     paperRepository PaperRipositry;
+
     
     @RequestMapping(value="/regist", method=RequestMethod.POST)
 	public ModelAndView registerPost(
@@ -54,6 +55,9 @@ public class registerController{
 
         paper.setImage(imageString);
         PaperRipositry.saveAndFlush(paper);
-        return new ModelAndView("redirect:/post");
+
+      
+        return new ModelAndView("redirect:/regist");
     }
+
 }

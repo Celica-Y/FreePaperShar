@@ -2,6 +2,7 @@ package com.example.controller;
 
 import com.example.entity.userData;
 import com.example.repository.UserDataRipository;
+import com.example.service.AccountService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,7 +17,8 @@ public class memberEntryController {
 // 会員登録
     @Autowired
     UserDataRipository userDataRipository;
-
+    @Autowired
+    AccountService accountService;
     
     @RequestMapping(value="/entry", method=RequestMethod.POST)
 	public ModelAndView userDataPost(@ModelAttribute("entryForm") userData userData,
@@ -49,8 +51,9 @@ public class memberEntryController {
         // System.out.println("エンコード確認：" + base64str);
 
         userData.setPicture(imageString);
+        accountService.registerMember(userData, userData.getPassword());
         userDataRipository.saveAndFlush(userData);
-		return new ModelAndView("redirect:/mypage");
+		return new ModelAndView("redirect:/entry");
 	}
 
 

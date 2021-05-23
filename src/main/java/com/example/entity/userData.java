@@ -1,5 +1,6 @@
 package com.example.entity;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -17,7 +18,7 @@ import lombok.ToString;
 @Data
 @ToString(exclude = { "password", "Picture" })
 @Table(name="userTable")
-public class userData {
+public class userData implements Serializable{
 
     @Id 
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,11 +31,12 @@ public class userData {
     @Column(name = "Email", length =120, nullable = false, unique = true)
 	private String Email;
 
-    @Column(name = "password", length = 255, nullable = false)
+    @Column(name = "password", length = 400, nullable = false)
 	private String password;
 
     @Column(columnDefinition="MEDIUMTEXT", name = "profilePicture", nullable = true)
 	private String Picture;
+
 
     @ManyToMany(mappedBy = "user")
     private Set<PaperTable>  paperTable;
