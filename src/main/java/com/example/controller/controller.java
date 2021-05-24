@@ -139,7 +139,7 @@ public class controller {
 // プロフ変更ページ表示
 	@RequestMapping(value="/change", method=RequestMethod.GET)
 	public ModelAndView profilleChangeGet(ModelAndView mv) {
-	mv.setViewName("profilleChange"); 
+		mv.setViewName("profilleChange"); 
 	return mv;
 	}
 }
