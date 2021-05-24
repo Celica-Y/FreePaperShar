@@ -16,7 +16,6 @@ import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
 import lombok.Data;
-import lombok.ToString;
 
 @Entity
 @Data
@@ -51,7 +50,7 @@ public class PaperTable {
 	private String comment;
 
     @Column(columnDefinition="MIDIUMTEXT", name = "uploadImg", nullable = true)
-	private String Picture;
+	private String image;
 
     @Column(name="create_date")
 	private Date createDate;
@@ -72,7 +71,7 @@ public class PaperTable {
     }
 
 
-    // @ManyToMany(cascade = CascadeType.ALL)
-    // @JoinTable
-    // private Set<userData> user;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable
+    private Set<userData> user;
 }

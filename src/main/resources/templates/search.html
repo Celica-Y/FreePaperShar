@@ -32,10 +32,7 @@
 	<meta name="twitter:title" content="" />
 	<meta name="twitter:image" content="" />
 	<meta name="twitter:url" content="" />
-	<meta name="twitter:card" content="" />
-	<!-- CSRFトークン対策 -->
-	<meta name="_csrf" th:content="${_csrf.token}"/>
-	<meta name="_csrf_header" th:content="${_csrf.headerName}"/>				
+	<meta name="twitter:card" content="" />				
 
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 	<link rel="shortcut icon" th:src="@{/favicon.ico}">
@@ -155,49 +152,26 @@
 								
 									<div class="entry serch-rsl col-md-3 col-sm-6 col-padding animate-box" data-animate-effect="fadeInLeft" th:each="obj : ${list}">
 										<a href="#" class="blog-img">
-											<img th:src="@{images/NoImageデミグラス.png}" class="img-responsive" alt="Free HTML5 Bootstrap Template by FreeHTML5.co" >
+											<img th:if="${obj.image}" th:src="|data:image/jpeg;base64,${obj.image}|" class="img-responsive" alt="Free HTML5 Bootstrap Template by FreeHTML5.co" >
 										</a> 
 										<div class="desc">
 											<small th:text="${obj.category}">カテゴリー</small>
 											<h3><a href="#" th:text="${obj.paperName}">フリーペーパーの名前1</a></h3>
 											<p th:text="${obj.comment}">投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容</p>
 											<span>
-												<!-- <img class="profile-img-small" h:unless="${obj.image}" th:src="@{/img/noimage.jpg}" >
-												<img class="profile-img-small" th:if="${obj.Picture}" th:src="|data:image/jpeg;base64,${pdata.image}|"> -->
+												<!-- <img class="profile-img-small" h:unless="${obj.image}" th:src="@{/img/noimage.jpg}" > -->
+											
+												<!-- <img class="profile-img-small" th:if="${obj.picture}" th:src="|data:image/jpeg;base64,${obj.picture}|"> -->
+
 												<small th:text="${obj.prefectures}">　都道府県 </small>
 												<small th:text="${#dates.format(obj.updateDate, 'yyyy/MM/dd HH:mm:ss')}">　時間 </small>
 											</span>
 											<a href="#" class="lead">Read More <i class="icon-arrow-right3"></i></a>
 										</div>
 									</div>
-
-									
-								
-								<!-- <h4>
-								<strong th:if="${size}" th:text="${size}"></strong>
-								<strong th:unless="${size}">0</strong>
-								<span>件</span>
-								<strong th:text="${msg}"></strong>
-								</h4>
-								<table>
-									<tr><th>名前</th>
-										<th>カテゴリー</th>
-										<th>都道府県</th>
-										
-									</tr>
-									<tr th:each="obj : ${list}">
-										<td th:text="${obj.paperName}"></td>
-										<td th:text="${obj.category}"></td>
-										<td th:text="${obj.prefectures}"></td>
-										
-									</tr>
-								</table> -->
-									
-							
 					
 							</div>
-					
-
+				
 				</div>
 			</div>
 

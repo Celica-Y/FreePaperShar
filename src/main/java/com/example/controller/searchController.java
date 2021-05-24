@@ -1,31 +1,17 @@
 package com.example.controller;
 
-import java.net.http.HttpClient.Redirect;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 import com.example.entity.PaperTable;
 import com.example.entity.PullDownCategory;
-import com.example.entity.cityEntity;
 import com.example.entity.prefectureEntity;
 import com.example.repository.PullDownPrefectureRepository;
 import com.example.repository.categoryEntityRepository;
-import com.example.repository.cityEntityRepository;
-import com.example.repository.paperRepository;
 import com.example.repository.peperSearchRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -68,7 +54,7 @@ public class searchController {
 		@RequestParam(name ="category", required = false) String categoryName,
 		@RequestParam(name ="paperName", required = false) String paperName
 		){
-	
+			
 			mv.setViewName("search"); 
 			List<PaperTable> list = new ArrayList<PaperTable>();
 
@@ -78,6 +64,7 @@ public class searchController {
 					mv.addObject("size", list.size());
 					mv.addObject("prefectures", prefectures);
 					mv.addObject("categoryName", categoryName);
+					mv.addObject("picture", categoryName);
 					System.out.println("都道府県とカテゴリ");
 
 				}else if(paperName!=""){//都道府県とフリペ名
@@ -130,6 +117,8 @@ public class searchController {
 			if(list.size()==0){
 				mv.addObject("msg", "該当データがありません。");
 			}
+
+
 			mv.addObject("list", list);
 			return mv;
         /**

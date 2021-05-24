@@ -4,17 +4,21 @@ import java.util.Calendar;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import com.example.entity.PullDownCategory;
-import com.example.entity.cityEntity;
 import com.example.entity.prefectureEntity;
+import com.example.entity.userData;
 import com.example.repository.PullDownPrefectureRepository;
+import com.example.repository.UserDataRipository;
 import com.example.repository.categoryEntityRepository;
+import com.example.repository.cityEntity;
 import com.example.repository.cityEntityRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -29,6 +33,9 @@ public class controller {
 	
 	@Autowired
 	cityEntityRepository cityRepository;
+
+	@Autowired
+	UserDataRipository repository;
 	
 // indexページの表示
 	@RequestMapping(value="/", method=RequestMethod.GET)
@@ -108,8 +115,11 @@ public class controller {
 	}
 
 // マイページの表示
-	@RequestMapping(value="/mypage", method=RequestMethod.GET)
-	public ModelAndView mypageGet(ModelAndView mv) {
+	@RequestMapping(value="/mypage/{id}", method=RequestMethod.GET)
+	public ModelAndView mypageGet(@ModelAttribute userData userData,
+	@PathVariable long id,ModelAndView mv) {
+		Optional <userData> user = repository.findById(id);
+		mv.addObject("userData", user.get());
 		mv.setViewName("mypage"); 
 		return mv;
 	}
@@ -132,14 +142,16 @@ public class controller {
 // 退会ページの表示
 	@RequestMapping(value="/withd", method=RequestMethod.GET)
 	public ModelAndView withdrawalGet(ModelAndView mv) {
-	mv.setViewName("withdrawal"); 
+		mv.setViewName("withdrawal"); 
 	return mv;
 	}
 
 // プロフ変更ページ表示
-	@RequestMapping(value="/change", method=RequestMethod.GET)
-	public ModelAndView profilleChangeGet(ModelAndView mv) {
+	@RequestMapping(value="/mypage/change/{id}", method=RequestMethod.GET)
+	public ModelAndView profilleChangeGet(@ModelAttribute userData userData, @PathVariable long id,ModelAndView mv) {
+		Optional <userData> user = repository.findById(id);
+		mv.addObject("userData", user.get());
 		mv.setViewName("profilleChange"); 
-	return mv;
+		return mv;
 	}
 }
