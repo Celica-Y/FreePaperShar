@@ -45,7 +45,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                 .usernameParameter("Email")          // ユーザ名のリクエストパラメータ名
                 .passwordParameter("password")          // パスワードのリクエストパラメータ名
                 .defaultSuccessUrl("/mypage")             // 認証成功時に遷移するデフォルトのパス
-                .failureUrl("/login?error=true");   // 認証失敗時に遷移するパス
+                .failureUrl("/login?error");   // 認証失敗時に遷移するパス
 
         // ログアウト設定
         http.logout()

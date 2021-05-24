@@ -97,10 +97,15 @@
                     <hr>
 				</div>
 
-				<form class="action" id="form" method="POST">
+				<form class="action" id="form" method="POST" th:action="@{/authenticate}">
 					<div class="col-md-12">
 						<div class="login-group">
 							<div class="col-md-6">
+								<div th:if="${param.error}" style="color: red;"> <!-- (1) リクエストパラメータの判定 -->
+									<div>
+									UserNameまたは、Passwordが違います。 <!-- (2) 認証エラーメッセージ -->
+									</div>
+								</div>
 								<div class="form-group">
 									<p><i class="icon-mail5"> メールアドレス </p></i>
 									<input type="text" class="form-control" placeholder="メールアドレス" name="Email">
