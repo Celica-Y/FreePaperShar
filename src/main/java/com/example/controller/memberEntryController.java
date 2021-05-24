@@ -6,6 +6,7 @@ import com.example.service.AccountService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,10 +20,11 @@ public class memberEntryController {
     UserDataRipository userDataRipository;
     @Autowired
     AccountService accountService;
-    
+
     @RequestMapping(value="/entry", method=RequestMethod.POST)
 	public ModelAndView userDataPost(@ModelAttribute("entryForm") userData userData,
-    MultipartFile uploadfile, ModelAndView mv) throws Exception {
+    MultipartFile uploadfile, ModelAndView mv,
+    BindingResult bindingResult) throws Exception {
 	
         /*テストデータ
             name:     寝蔵
@@ -32,6 +34,10 @@ public class memberEntryController {
             name:     取り置き
             email:   torioki@yahoo.co.jp
             pass:    torioki3
+
+            name:    冒険者
+            email:   bou@gmail.com
+            pass:    boukensuru
          */
         
         // JSから送られたbase64形式のデータからdata~,を削除。
@@ -51,7 +57,10 @@ public class memberEntryController {
         // System.out.println("エンコード確認：" + base64str);
 
         userData.setPicture(imageString);
+
         accountService.registerMember(userData, userData.getPassword());
+
+
         userDataRipository.saveAndFlush(userData);
 		return new ModelAndView("redirect:/entry");
 	}
