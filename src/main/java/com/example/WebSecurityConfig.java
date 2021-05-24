@@ -55,5 +55,4 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
         http.csrf().disable();  //disableの呼び出し無効化。認証が必要なAPIなどがあるときには安易に使ってはいけない。
     }
 
-    
 }
