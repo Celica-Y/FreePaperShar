@@ -142,8 +142,8 @@ public class controller {
 // 退会ページの表示
 	@RequestMapping(value="/withd", method=RequestMethod.GET)
 	public ModelAndView withdrawalGet(ModelAndView mv) {
-	mv.setViewName("withdrawal"); 
-	return mv;
+		mv.setViewName("withdrawal"); 
+		return mv;
 	}
 
 // プロフ変更ページ表示
