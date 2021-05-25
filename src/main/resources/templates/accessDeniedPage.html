@@ -3,7 +3,7 @@
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ぺっふり〜 退会</title>
+	<title>ぺっふり〜 投稿詳細</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="フリーパーパーの置き場所を見つけて共有するサイトです。" />
 	<meta name="keywords" content="ぺっふり〜、ぺっふりー、フリーペーパー、場所、置き場所、フリーペーパーの場所" />
@@ -40,15 +40,15 @@
 	<link th:href="@{https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700}" rel="stylesheet">
 	
 	<!-- Animate.css -->
-	<link rel="stylesheet" type="text/css" th:href="@{/css/animate.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{css/animate.css}">
 	<!-- Icomoon Icon Fonts-->
-	<link rel="stylesheet" type="text/css" th:href="@{/css/icomoon.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{css/icomoon.css}">
 	<!-- Bootstrap  -->
-	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{css/bootstrap.css}">
 	<!-- Flexslider  -->
-	<link rel="stylesheet" type="text/css" th:href="@{c/ss/flexslider.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{css/flexslider.css}">
 	<!-- Theme style  -->
-	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{css/style.css}">
 	<!-- croppie -->
 	<link rel="stylesheet" type="text/css" th:href="@{/node_modules/croppie/croppie.css}" />
 
@@ -74,7 +74,7 @@
 				<ul>
 					<li class="fh5co-active"><a href="/">ホーム</a></li>
 					<li><a href="/search">検索</a></li>
-					<li><a href="portfolio.html">マイページ</a></li>
+					<li><a href="/mypage">マイページ</a></li>
 					<!--ログイン時は「ログアウト」へ変更-->
 					<li><a href="/login">ログイン</a></li>
 				</ul>
@@ -87,58 +87,13 @@
 
 		</aside>
 
-        <div id="fh5co-main">
-            <div class="fh5co-narrow-content animate-box" data-animate-effect="fadeInLeft">
-				
-				<div class="row">
-					<div class="col-md-4">
-						<h2>退会</h2>
-					</div>
-                    <hr>
-				</div>
+        <h1>アクセスが拒否されました</h1>
 
-				<form class="action" id="form" method="POST" action="/withd">
-					<div class="col-md-12">
-						<div class="login-group">
-							<div class="col-md-6">
-								<p>全てのデータが削除されます</p>
-								<div class="form-group">
-									<p><i class="icon-mail5"> メールアドレス </p></i>
-									<input type="text" class="form-control" placeholder="メールアドレス" name="Email">
-								</div>
-								<div class="form-group">
-									<p><i class="icon-key"> パスワード </p></i>
-									<input type="password" id="password" class="password form-control" placeholder="パスワード" name="password">
-									<input type="checkbox" id="js-passcheck"/>
-									<label for="js-passcheck">パスワードを表示</label>
-								</div>
-								<div class="form-group leftBtn">
-									<small><a href="/mypage">退会しない</a></small>
-									<input type="submit" class="btn btn-primary btn-md" value="退会">
-								</div>
-							</div>	
-
-						</div>
-					</div>
-				</form>
-        </div>
-    </div>
-
-	<!-- jQuery -->
-	<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
-	<!-- Bootstrap -->
-	<script type="text/javascript"　src="@{/js/bootstrap.min.js}"></script>
-	<!-- Waypoints -->
-	<script type="text/javascript" th:src="@{/js/jquery.waypoints.min.js}"></script>
-	<!-- validate js-->
-	<script type="text/javascript" th:src="@{/node_modules/jquery-validation/dist/jquery.validate.js}"></script>
-
-	<!-- MAIN JS -->
-	<script type="text/javascript" th:src="@{/js/main.js}"></script>
-	<!-- croppie Js-->
-	<script th:src="@{/node_modules/croppie/croppie.js}"></script>
-	<!-- validate Js-->
-	<script type="text/javascript" th:src="@{/js/validate.js}"></script>
-
-    </body>
+        <form method="get" th:action="@{/}">
+            <input type="submit" value="Homeへ">
+        </form>
+        <form method="post" th:action="@{/logout}">
+            <input type="submit" value="ログアウト">
+        </form>
+</body>
 </html>

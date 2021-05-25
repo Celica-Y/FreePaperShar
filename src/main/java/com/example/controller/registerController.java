@@ -1,6 +1,7 @@
 package com.example.controller;
 
 import com.example.entity.PaperTable;
+import com.example.repository.UserDataRipository;
 import com.example.repository.paperRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,6 @@ public class registerController{
     @Autowired
     paperRepository PaperRipositry;
 
-    
     @RequestMapping(value="/regist", method=RequestMethod.POST)
 	public ModelAndView registerPost(
         @ModelAttribute("PaperForm") PaperTable paper,

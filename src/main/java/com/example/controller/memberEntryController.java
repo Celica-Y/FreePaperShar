@@ -38,6 +38,9 @@ public class memberEntryController {
             name:    冒険者
             email:   bou@gmail.com
             pass:    boukensuru
+
+            100@docomo.ne.jp
+            100enchan
          */
         
         // JSから送られたbase64形式のデータからdata~,を削除。
@@ -62,7 +65,7 @@ public class memberEntryController {
 
 
         userDataRipository.saveAndFlush(userData);
-		return new ModelAndView("redirect:/entry");
+		return new ModelAndView("redirect:/mypage");
 	}
 
 

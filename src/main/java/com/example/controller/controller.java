@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -115,21 +116,13 @@ public class controller {
 	}
 
 // マイページの表示
-	@RequestMapping(value="/mypage/{id}", method=RequestMethod.GET)
-	public ModelAndView mypageGet(@ModelAttribute userData userData,
-	@PathVariable long id,ModelAndView mv) {
-		Optional <userData> user = repository.findById(id);
-		mv.addObject("userData", user.get());
+	@RequestMapping(value="/mypage", method=RequestMethod.GET)
+	public ModelAndView mypageGet(
+	ModelAndView mv) {
 		mv.setViewName("mypage"); 
 		return mv;
 	}
 
-// 検索結果一覧表示
-	// @RequestMapping(value="/result", method=RequestMethod.GET)
-	// public ModelAndView searchResultGet(ModelAndView mv) {
-	// 	mv.setViewName("searchResult"); 
-	// 	return mv;
-	// }
 
 // 投稿一覧の表示
 	@RequestMapping(value="/post", method=RequestMethod.GET)
@@ -143,7 +136,13 @@ public class controller {
 	@RequestMapping(value="/withd", method=RequestMethod.GET)
 	public ModelAndView withdrawalGet(ModelAndView mv) {
 		mv.setViewName("withdrawal"); 
-	return mv;
+		return mv;
+	}
+	@RequestMapping(value="/withd", method=RequestMethod. POST)
+	public ModelAndView withdrawalPOST(@RequestParam("id") long id,ModelAndView mv) {
+		repository.deleteById(id);
+		mv.setViewName("withdrawal"); 
+		return mv;
 	}
 
 // プロフ変更ページ表示

@@ -25,4 +25,14 @@ public class AccountService {
                 myUser.setPassword(password);
                 repository.saveAndFlush(myUser);
             }
+
+    //退会
+	public void deleteUserInfo(Long id) {
+		
+		//ユーザーに関する全情報を削除
+		repository.deleteById(id);
+		// repository.deleteByPaperTableId(id);
+
+	}
+
 }
