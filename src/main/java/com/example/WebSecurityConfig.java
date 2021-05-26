@@ -36,9 +36,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
             .and()
             .authorizeRequests()
                 .antMatchers("/login","/search","/","/entry","/resources/**","/js/**","/login?","/resources/**","/js/**/","/static/**", "/css/**","/images/**","/fonts/**","/node_modules/**","/sass/**").permitAll()  // /loginFormは、全ユーザからのアクセスを許可
-                .anyRequest().authenticated()          //  上記以外は、認証を求める
-                .and()
-                .sessionManagement();
+                .anyRequest().authenticated();          //  上記以外は、認証を求める
+                // .and()
+                // .sessionManagement();
 
         // ログイン設定
         http.formLogin()                                // フォーム認証の有効化

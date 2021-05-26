@@ -22,6 +22,10 @@ public class AccountUserDetails implements UserDetails{
     public String getName() { 
         return this.myUser.getEmail();
     }
+
+    public Long getUserId() { 
+        return this.myUser.getId();
+    }
     
 
     private Collection<GrantedAuthority> authorities;

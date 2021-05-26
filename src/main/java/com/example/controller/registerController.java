@@ -1,27 +1,18 @@
 package com.example.controller;
 
-import java.security.Principal;
-import java.util.Optional;
-
-import javax.servlet.http.HttpServletRequest;
-
 import com.example.entity.PaperTable;
-import com.example.entity.userData;
 import com.example.repository.UserDataRipository;
 import com.example.repository.paperRepository;
 import com.example.service.AccountUserDetails;
-import com.example.service.AccountUserDetailsService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -39,7 +30,8 @@ public class registerController{
         MultipartFile uploadfile,
         ModelAndView mv,
         BindingResult bindingResult,
-        @RequestParam(name = "image", required = false) String image
+        @RequestParam(name = "image", required = false) String image,
+        @AuthenticationPrincipal AccountUserDetails datailaccount
         ){
 
 
@@ -65,14 +57,17 @@ public class registerController{
  */
 
         // ユーザーIdのセット
-        // Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        // // //Principalからログインユーザの情報を取得中間テーブルyいる？
-        // String u = auth.getPrincipal();
-    	// // paper.setUserId(q.get());
-            // System.out.println(u);
+        // Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        // Long userId = principal.getId();
+
+        // datailaccount.getUser().getId();
+        System.out.println("ユーザーのidは:"+datailaccount.getUser().getId()+"さん："+datailaccount.getUser().getUserName());
+
+        long id = datailaccount.getUser().getId();
+        paper.setUserId(id);
 
         if(image==""){
-            System.out.println("kara");
+            System.out.println("no data");
 
         }else if(image!=""){
             

@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -24,7 +25,8 @@ public class memberEntryController {
     @RequestMapping(value="/entry", method=RequestMethod.POST)
 	public ModelAndView userDataPost(@ModelAttribute("entryForm") userData userData,
     MultipartFile uploadfile, ModelAndView mv,
-    BindingResult bindingResult) throws Exception {
+    BindingResult bindingResult,
+    @RequestParam(name = "Picture", required = false) String Picture) throws Exception {
 	
         /*テストデータ
             name:     寝蔵
@@ -38,29 +40,31 @@ public class memberEntryController {
             name:    冒険者
             email:   bou@gmail.com
             pass:    boukensuru
-
-            100@docomo.ne.jp
-            100enchan
+¥
          */
+        if(Picture!=""){
+            System.out.println("no data");
+
+        }else if(Picture==""){
+            // JSから送られたbase64形式のデータからdata~,を削除。
+            String img = userData.getPicture();
+            // System.out.println(img);
+            String delims="[,]";
+            String[] parts = img.split(delims);
+            String imageString = parts[1];
+            // バイト変換とデコード
+            // byte[] def = imageString.getBytes();
+            // System.out.println("byte変換確認：" + def);
+            // byte[] bytes = Base64.getDecoder().decode(def);
+            // System.out.println("デコード確認：" + bytes);
+
+            // エンコード
+            // String base64str = Base64.getEncoder().encodeToString(bytes);
+            // System.out.println("エンコード確認：" + base64str);
+
+            userData.setPicture(imageString);
+        }
         
-        // JSから送られたbase64形式のデータからdata~,を削除。
-        String img = userData.getPicture();
-        // System.out.println(img);
-        String delims="[,]";
-        String[] parts = img.split(delims);
-        String imageString = parts[1];
-        // バイト変換とデコード
-        // byte[] def = imageString.getBytes();
-        // System.out.println("byte変換確認：" + def);
-        // byte[] bytes = Base64.getDecoder().decode(def);
-        // System.out.println("デコード確認：" + bytes);
-
-        // エンコード
-        // String base64str = Base64.getEncoder().encodeToString(bytes);
-        // System.out.println("エンコード確認：" + base64str);
-
-        userData.setPicture(imageString);
-
         accountService.registerMember(userData, userData.getPassword());
 
 
