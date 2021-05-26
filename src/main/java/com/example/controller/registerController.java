@@ -1,14 +1,27 @@
 package com.example.controller;
 
+import java.security.Principal;
+import java.util.Optional;
+
+import javax.servlet.http.HttpServletRequest;
+
 import com.example.entity.PaperTable;
+import com.example.entity.userData;
 import com.example.repository.UserDataRipository;
 import com.example.repository.paperRepository;
+import com.example.service.AccountUserDetails;
+import com.example.service.AccountUserDetailsService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -17,12 +30,17 @@ public class registerController{
 
     @Autowired
     paperRepository PaperRipositry;
+    @Autowired
+    UserDataRipository reposi;
 
-    @RequestMapping(value="/regist", method=RequestMethod.POST)
+    @RequestMapping(value="/mypage", method=RequestMethod.POST)
 	public ModelAndView registerPost(
         @ModelAttribute("PaperForm") PaperTable paper,
         MultipartFile uploadfile,
-        ModelAndView mv)throws Exception {
+        ModelAndView mv,
+        BindingResult bindingResult,
+        @RequestParam(name = "image", required = false) String image
+        ){
 
 
 /**
@@ -45,19 +63,33 @@ public class registerController{
  *            ①弘前市＊＊町**番　酒屋キクラゲ
  *            ②弘前市＊町***番*-*  酒店oske
  */
-       
 
-        String img = paper.getImage();
-        String delims="[,]";
-        // System.out.println(delims);
-        String[] parts = img.split(delims);
-        String imageString = parts[1];
+        // ユーザーIdのセット
+        // Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        // // //Principalからログインユーザの情報を取得中間テーブルyいる？
+        // String u = auth.getPrincipal();
+    	// // paper.setUserId(q.get());
+            // System.out.println(u);
 
-        paper.setImage(imageString);
+        if(image==""){
+            System.out.println("kara");
+
+        }else if(image!=""){
+            
+            String imag = paper.getImage();
+            // System.out.println(image);
+            String delims=",";
+            String[] parts = imag.split(delims);
+
+            String imageString = parts[1];
+            paper.setImage(imageString);
+            System.out.println(imageString);
+        }
+
         PaperRipositry.saveAndFlush(paper);
 
       
-        return new ModelAndView("redirect:/regist");
+        return new ModelAndView("redirect:/mypage");
     }
 
 }

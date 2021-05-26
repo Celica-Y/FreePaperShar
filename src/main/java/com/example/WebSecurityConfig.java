@@ -35,8 +35,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                 .accessDeniedPage("/accessDeniedPage")  // アクセス拒否された時に遷移するパス
             .and()
             .authorizeRequests()
-                .antMatchers("/login","/search","/","/entry","/resources/**","/js/**","/login-error").permitAll()  // /loginFormは、全ユーザからのアクセスを許可
-                .anyRequest().authenticated();          //  上記以外は、認証を求める
+                .antMatchers("/login","/search","/","/entry","/resources/**","/js/**","/login?","/resources/**","/js/**/","/static/**", "/css/**","/images/**","/fonts/**","/node_modules/**","/sass/**").permitAll()  // /loginFormは、全ユーザからのアクセスを許可
+                .anyRequest().authenticated()          //  上記以外は、認証を求める
+                .and()
+                .sessionManagement();
 
         // ログイン設定
         http.formLogin()                                // フォーム認証の有効化
@@ -44,8 +46,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                 .loginProcessingUrl("/login")    // フォーム認証処理のパス
                 .usernameParameter("Email")          // ユーザ名のリクエストパラメータ名
                 .passwordParameter("password")          // パスワードのリクエストパラメータ名
-                .defaultSuccessUrl("/mypage");             // 認証成功時に遷移するデフォルトのパス
-                // .failureUrl("/login?error=true");   // 認証失敗時に遷移するパス
+                .defaultSuccessUrl("/mypage")             // 認証成功時に遷移するデフォルトのパス
+                .failureUrl("/login?");   // 認証失敗時に遷移するパス
 
         // ログアウト設定
         http.logout()

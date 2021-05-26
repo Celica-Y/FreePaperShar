@@ -22,6 +22,7 @@ public class AccountUserDetails implements UserDetails{
     public String getName() { 
         return this.myUser.getEmail();
     }
+    
 
     private Collection<GrantedAuthority> authorities;
     @Override

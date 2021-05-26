@@ -41,19 +41,26 @@
 	<link th:href="@{https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700}" rel="stylesheet">
 	
 	<!-- Animate.css -->
-	<link rel="stylesheet" type="text/css" th:href="@{/css/animate.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{css/animate.css}">
 	<!-- Icomoon Icon Fonts-->
-	<link rel="stylesheet" type="text/css" th:href="@{/css/icomoon.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{css/icomoon.css}">
 	<!-- Bootstrap  -->
-	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{css/bootstrap.css}">
 	<!-- Flexslider  -->
-	<link rel="stylesheet" type="text/css" th:href="@{/css/flexslider.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{css/flexslider.css}">
 	<!-- Theme style  -->
-	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{css/style.css}">
+	<!-- croppie -->
+	<link rel="stylesheet" type="text/css" th:href="@{/node_modules/croppie/croppie.css}" />
 
 	<!-- Modernizr JS -->
 	<script type="text/javascript" th:src="@{/js/modernizr-2.6.2.min.js}"></script>
-
+	<!-- jquery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script type="text/javascript" th:src="@{/js/pull-downMenu.js}"></script>
+	<!-- croppie crop js-->
+	<script type="text/javascript" th:src="@{/js/papearCrop.js}"></script>
+	
 
 	</head>
 	<body>
@@ -87,14 +94,147 @@
 				<div class="row">
 					<div class="col-md-4">
 						<h2><img th:src="@{/images/プロフィール画像.png}" class="profile-img-small"><span> 名前</span></h2>
+						<div class="mypage-registBtn col-md-6 btn-parallel">
+							<div class="btn2 animate-box" data-animate-effect="fadeInLeft">
+								<p><a href="/change" class="btn btn-primary btn-learn">プロフィールの変更</a></p>
+							</div>
+							
+								<div class="btn2 animate-box" data-animate-effect="fadeInLeft">
+								<p><a href="/withdrawal" class="btn btn-primary btn-learn">退会</a></p>
+							</div>
 					</div>
-					<p class="mypage-registBtn">
-						<a th:href="@{/regist}" class="btn btn-primary"><i class="icon-pencil">投稿する</i></a>
-					</p>
+				</div>
+
 					<hr>
 				</div>
 			</div>
 
+			<div class="fh5co-narrow-content animate-box" data-animate-effect="fadeInLeft">
+				
+			<div class="row">
+				<div class="col-md-4">
+					<h2>投稿</h2>
+				</div>
+				<hr>
+			</div>
+
+			<form class="action" id="register-form" method="POST" th:object="${PaperForm}"　th:action="@{/mypage}">
+
+				<div class="col-md-6">
+					<div class="form-group">
+						<p>フリーペーパーの名前(必須)</p>
+						<input type="text" class="form-control" name="PaperName" placeholder="フリーペーパーの名前を入力">
+					</div>
+
+					<div class="form-group">
+						<p>置き場所の情報(必須)<br><small>都道府県</small></p>
+						<select id="prefectures" class="mt-0 pull prefectures" name="prefectures">
+							<option value="">都道府県を選択</option>
+							<option th:each="pref : ${pref}" 
+									th:value="${pref.prefName}" 
+									th:text="${pref.prefName}"
+									th:classappend="${pref.id}"
+									th:selected="${pref.prefName} == ${prefectures}">
+							</option>
+						</select>
+					</div>
+					<div class="form-group" disabled>
+						<p><small>市区町村</small></p>
+						<select id="city" name="city" class="mt-0 pull" disabled>
+							<option th:each="city : ${city}" 
+									th:value="${city.cityName}" 
+									th:text="${city.cityName}"
+									th:prefId="${city.prefIdId}"
+									>
+							</option>
+						</select>
+					</div>
+
+					<div class="form-group">
+						<p>カテゴリー(必須)</p>
+						<select name="category" id="category" class="mt-0 pull">
+							<option value="">カテゴリーを選択</option>
+							<option th:each="category: ${category}" 
+									th:value="${category.categoryName}" 
+									th:text="${category.categoryName}">
+							</option>
+						</select>
+					</div>
+
+					<div class="form-group">
+						<p>発行年(必須)</p>
+						<select name="year" id="year" class="mt-0 pull">
+							<option value="">発行年を選択</option>
+							<option th:each="Year : ${Year}" 
+									th:value="${Year.value}" 
+									th:text="${Year.value}">
+							</option>
+						</select>
+						<p>発行月(必須)</p>
+						<select name="month" id="month" class="mt-0 pull">
+							<option value="">発行月を選択</option>
+							<option th:each="month : ${month}" 
+									th:value="${month.value}" 
+									th:text="${month.value}">
+							</option>
+						</select>
+					</div>
+				</div>
+
+
+				<div class="row">
+					<div class="col-md-6">
+
+						<div class="form-group">
+							<p>お店などの情報やコメントなど</p>
+							<textarea id="" name="comment" class="form-control" placeholder="お店などの置き場所に関する情報やコメントなどを記入"></textarea>
+						</div>
+
+						<!-- <div class="form-group">
+							<p>写真</p>
+							<label class="btn btn-primary btn-md butan">画像を選択
+								<input style="display: none;" class="input-tag" type="file" id="up" />
+							</label>
+							<p>プレビュー</p>
+							<img id="upload-view" name="img">
+							<input type="text" style="display: none;" />
+							<div id="cropImagePop">
+								<div class="crop-content">
+									<div class="crop"></div>
+									<input type="button" class="modal-btn-cancel btn btn-primary btn-md" value="キャンセル">
+									<input type="button" class="upload-result btn btn-primary btn-md" id="upload-result up" value="決定" >
+								</div>
+							</div>
+						</div> -->
+
+						<div class="form-group">
+							<p>写真</p>
+							<label class="btn btn-primary btn-md butan">画像を選択
+								<input style="display: none;" class="input-tag" type="file" id="upload" />
+							</label>
+							<div>
+								<p>プレビュー</p>
+								<img id="upload-view">
+								<input type="text" style="display: none;" name="image"/>
+							</div>
+
+							<div id="cropImagePop">
+								<div class="crop-content">
+									<div class="crop"></div>
+									<input type="button" class="modal-btn-cancel btn btn-primary btn-md" value="キャンセル">
+									<input type="button" class="upload-result btn btn-primary btn-md" id="upload-result" value="決定" >
+								</div>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<input type="submit" class="btn btn-primary btn-md" value="投稿する！">
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+			
 			
 <!-- 投稿情報の一部表示 -->
 			<div class="fh5co-narrow-content">
@@ -158,95 +298,24 @@
 				</div>
 			</div>
 
-<!-- お気に入り情報の一部表示 -->
-			<div class="fh5co-narrow-content">
-				<h2 class="fh5co-heading animate-box" data-animate-effect="fadeInLeft">お気に入り履歴一覧</h2>
-				<div class="row row-bottom-padded-md">
-					<div class="col-md-3 col-sm-6 col-padding animate-box" data-animate-effect="fadeInLeft">
-						<div class="entry">
-							<a href="#" class="blog-img"><img th:src="@{images/img-1.jpg}" class="img-responsive" alt="Free HTML5 Bootstrap Template by FreeHTML5.co"></a>
-							<div class="desc">
-								<small>カテゴリー</small>
-								<h3><a href="#">フリーペーパーの名前1</a></h3>
-								<p>投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容
-									投稿内容投稿内容投稿内容投稿内容投稿内容</p>
-								<span><img th:src="@{/images/プロフィール画像.png}" class="profile-img-small"><small>　2010/11/15 </small>  <small> 13:00</small></span>
-								<a href="#" class="lead">Read More <i class="icon-arrow-right3"></i></a>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-3 col-sm-6 col-padding animate-box" data-animate-effect="fadeInLeft">
-						<div class="entry">
-							<a href="#" class="blog-img"><img th:src="@{images/img-2.jpg}" class="img-responsive" alt="Free HTML5 Bootstrap Template by FreeHTML5.co"></a>
-							<div class="desc">
-								<small>カテゴリー</small>
-								<h3><a href="#">フリーペーパーの名前2</a></h3>
-								<p>投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容
-									投稿内容投稿内容投稿内容投稿内容投稿内容</p>
-								<span><img th:src="@{/images/プロフィール画像.png}" class="profile-img-small"><small>　2010/11/15 </small>  <small> 13:00</small></span>
-								<a href="#" class="lead">Read More <i class="icon-arrow-right3"></i></a>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-3 col-sm-6 col-padding animate-box" data-animate-effect="fadeInLeft">
-						<div class="entry">
-							<a href="#" class="blog-img"><img th:src="@{/images/img-3.jpg}" class="img-responsive" alt="Free HTML5 Bootstrap Template by FreeHTML5.co"></a>
-							<div class="desc">
-								<small>カテゴリー</small>
-								<h3><a href="#">フリーペーパーの名前3</a></h3>
-								<p>投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容
-									投稿内容投稿内容投稿内容投稿内容投稿内容</p>
-								<span><img th:src="@{/images/プロフィール画像.png}" class="profile-img-small"><small>　2010/11/15 </small>  <small> 13:00</small></span>
-								<a href="#" class="lead">Read More <i class="icon-arrow-right3"></i></a>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-3 col-sm-6 col-padding animate-box" data-animate-effect="fadeInLeft">
-						<div class="entry">
-							<a href="#" class="blog-img"><img th:src="@{/images/img-4.jpg}" class="img-responsive" alt="Free HTML5 Bootstrap Template by FreeHTML5.co"></a>
-							<div class="desc">
-								<small>カテゴリー</small>
-								<h3><a href="#">フリーペーパーの名前4</a></h3>
-								<p>投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容投稿内容
-									投稿内容投稿内容投稿内容投稿内容投稿内容</p>
-								<span><img th:src="@{/images/プロフィール画像.png}" class="profile-img-small"><small>　2010/11/15 </small>  <small> 13:00</small></span>
-								<a href="#" class="lead">Read More <i class="icon-arrow-right3"></i></a>
-							</div>
-						</div>
-					</div>
-					<div class="btn2 animate-box" data-animate-effect="fadeInLeft">
-						<p><a href="#" class="btn btn-primary btn-learn">お気に入り一覧<i class="icon-arrow-right3"></i></a></p>
-					</div>
 
-					<div class="col-md-4 btn-parallel">
-						<div class="btn2 animate-box" data-animate-effect="fadeInLeft">
-							<p><a href="/change" class="btn btn-primary btn-learn">プロフィールの変更</a></p>
-						</div>
-						<div class="btn2 animate-box" data-animate-effect="fadeInLeft">
-							<p><a href="/withdrawal" class="btn btn-primary btn-learn">退会</a></p>
-						</div>
-					</div>
-					
-				</div>
-			</div>
-
-		</div>
 	</div>
 
 	<!-- jQuery -->
 	<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
-	<!-- jQuery Easing -->
-	<script type="text/javascript" th:src="@{/js/jquery.easing.1.3.js}"></script>
 	<!-- Bootstrap -->
-	<!-- <script src="@{/js/bootstrap.min.js}"></script> -->
-	<link type="text/javascript" th:rel="stylesheet" th:href="@{webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+	<script type="text/javascript"　src="@{/js/bootstrap.min.js}"></script>
 	<!-- Waypoints -->
 	<script type="text/javascript" th:src="@{/js/jquery.waypoints.min.js}"></script>
-	<!-- Flexslider -->
-	<script type="text/javascript" th:src="@{/js/jquery.flexslider-min.js}"></script>
-	
+	<!-- validate js-->
+	<script type="text/javascript" th:src="@{/node_modules/jquery-validation/dist/jquery.validate.js}"></script>
+	<!-- croppie Js-->
+	<script th:src="@{/node_modules/croppie/croppie.js}"></script>
+
 	<!-- MAIN JS -->
 	<script type="text/javascript" th:src="@{/js/main.js}"></script>
+	<!-- validate Js-->
+	<script type="text/javascript" th:src="@{/js/validate.js}"></script>
 
 	</body>
 </html>

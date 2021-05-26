@@ -62,7 +62,7 @@ public class controller {
 // 検索ページの表示はサーチコントローラーへ
 
 // 投稿ページの表示(urlはログイン機能追加後に変更)
-	@RequestMapping(value="/regist", method=RequestMethod.GET)
+	@RequestMapping(value="/mypage", method=RequestMethod.GET)
 	public ModelAndView registerGet(
 				@ModelAttribute PullDownCategory DownCategory,
 				@ModelAttribute prefectureEntity prefEntity,
@@ -104,7 +104,7 @@ public class controller {
 		mv.addObject("month", month);
 
 
-		mv.setViewName("register"); 
+		mv.setViewName("mypage"); 
 		return mv;
 	}
 
@@ -112,14 +112,6 @@ public class controller {
 	@RequestMapping(value="/detail", method=RequestMethod.GET)
 	public ModelAndView datailsGet(ModelAndView mv) {
 		mv.setViewName("details"); 
-		return mv;
-	}
-
-// マイページの表示
-	@RequestMapping(value="/mypage", method=RequestMethod.GET)
-	public ModelAndView mypageGet(
-	ModelAndView mv) {
-		mv.setViewName("mypage"); 
 		return mv;
 	}
 
