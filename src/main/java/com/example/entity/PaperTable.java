@@ -45,7 +45,7 @@ public class PaperTable {
     @Column(name = "comment", length = 200, nullable = true)
 	private String comment;
 
-    @Column(columnDefinition="MIDIUMTEXT", name = "uploadImg", nullable = true)
+    @Column(columnDefinition="MEDIUMTEXT", name = "uploadImg", nullable = true)
 	private String image;
 
     @Column(name="create_date")
@@ -53,10 +53,6 @@ public class PaperTable {
 
     @Column(name="update_date")
 	private Date updateDate;
-
-    @Column(name = "userId", length = 100, nullable = false)
-	private Long userId;
-
 
     @PrePersist
     public void onPrePersist() {
@@ -69,5 +65,7 @@ public class PaperTable {
         setUpdateDate(new Date());
     }
 
+    @Column(name = "userId", length = 50, nullable = false)
+	private String userId;
 
 }

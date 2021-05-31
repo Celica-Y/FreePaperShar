@@ -40,7 +40,6 @@ public class memberEntryController {
             name:    冒険者
             email:   bou@gmail.com
             pass:    boukensuru
-¥
          */
         if(Picture!=""){
             System.out.println("no data");

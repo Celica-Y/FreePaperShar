@@ -34,6 +34,5 @@ public class userData implements Serializable{
 
     @Column(columnDefinition="MEDIUMTEXT", name = "profilePicture", nullable = true)
 	private String Picture;
-    
 
 }

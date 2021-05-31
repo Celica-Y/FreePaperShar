@@ -20,13 +20,12 @@ public class AccountUserDetails implements UserDetails{
     }
 
     public String getName() { 
-        return this.myUser.getEmail();
+        return myUser.getEmail();
     }
 
-    public Long getUserId() { 
-        return this.myUser.getId();
+    public long getId() { 
+        return myUser.getId();
     }
-    
 
     private Collection<GrantedAuthority> authorities;
     @Override
@@ -43,6 +42,7 @@ public class AccountUserDetails implements UserDetails{
     public String getUsername() { 
         return this.myUser.getEmail();
     }
+
 
     @Override
     public boolean isAccountNonExpired() { // アカウントの有効期限の状態を判定するメソッド

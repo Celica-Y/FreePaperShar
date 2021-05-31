@@ -1,5 +1,7 @@
 package com.example.controller;
 
+import java.security.Principal;
+
 import com.example.entity.PaperTable;
 import com.example.repository.UserDataRipository;
 import com.example.repository.paperRepository;
@@ -30,8 +32,9 @@ public class registerController{
         MultipartFile uploadfile,
         ModelAndView mv,
         BindingResult bindingResult,
+        Principal principal,
         @RequestParam(name = "image", required = false) String image,
-        @AuthenticationPrincipal AccountUserDetails datailaccount
+        @AuthenticationPrincipal AccountUserDetails userDetails
         ){
 
 
@@ -56,15 +59,10 @@ public class registerController{
  *            ②弘前市＊町***番*-*  酒店oske
  */
 
-        // ユーザーIdのセット
-        // Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        // Long userId = principal.getId();
+        String name = userDetails.getUsername();
+        System.out.println(name+":これはgetNameの値");
+        paper.setUserId(name);
 
-        // datailaccount.getUser().getId();
-        System.out.println("ユーザーのidは:"+datailaccount.getUser().getId()+"さん："+datailaccount.getUser().getUserName());
-
-        long id = datailaccount.getUser().getId();
-        paper.setUserId(id);
 
         if(image==""){
             System.out.println("no data");
