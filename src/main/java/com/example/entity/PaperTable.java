@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -65,7 +67,11 @@ public class PaperTable {
         setUpdateDate(new Date());
     }
 
-    @Column(name = "userId", length = 50, nullable = false)
-	private String userId;
+    // @Column(name = "uId", length = 50, nullable = false)
+	// private String uId;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private userData userId;
 
 }

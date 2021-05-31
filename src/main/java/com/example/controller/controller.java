@@ -135,9 +135,13 @@ public class controller {
 		
 		String name = userDetails.getUsername();
 		service.deleteByEmail(name);
-
+ 
+		return new ModelAndView("redirect:/deleteUser/info");
+	}
+	@RequestMapping(value="/deleteUser/info", method=RequestMethod.GET)
+	public ModelAndView del(ModelAndView mv) {
 		mv.setViewName("withdrawal"); 
-		return new ModelAndView("redirect:/");
+		return mv;
 	}
 
 // プロフ変更ページ表示
