@@ -27,7 +27,7 @@ public class userData implements Serializable{
 	private String userName;
 
     @Column(name = "Email", length =120, nullable = false, unique = true)
-	private String Email;
+	private String email;
 
     @Column(name = "password", length = 400, nullable = false)
 	private String password;

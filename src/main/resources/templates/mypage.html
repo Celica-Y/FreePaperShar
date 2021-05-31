@@ -96,11 +96,12 @@
 						<h2><img th:src="@{/images/プロフィール画像.png}" class="profile-img-small"><span> 名前</span></h2>
 						<div class="mypage-registBtn col-md-6 btn-parallel">
 							<div class="btn2 animate-box" data-animate-effect="fadeInLeft">
-								<p><a href="/change" class="btn btn-primary btn-learn">プロフィールの変更</a></p>
+								<p>
+									<a class="btn btn-primary btn-learn">プロフィールの変更</a></p>
 							</div>
 							
 								<div class="btn2 animate-box" data-animate-effect="fadeInLeft">
-								<p><a href="/withdrawal" class="btn btn-primary btn-learn">退会</a></p>
+								<p><a th:href="@{/deleteUser}" class="btn btn-primary btn-learn">退会</a></p>
 							</div>
 					</div>
 				</div>

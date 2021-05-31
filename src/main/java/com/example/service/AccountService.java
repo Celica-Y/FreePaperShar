@@ -1,5 +1,7 @@
 package com.example.service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import com.example.entity.userData;
@@ -26,13 +28,9 @@ public class AccountService {
                 repository.saveAndFlush(myUser);
             }
 
-    //退会
-	public void deleteUserInfo(Long id) {
-		
-		//ユーザーに関する全情報を削除
-		repository.deleteById(id);
-		// repository.deleteByPaperTableId(id);
 
-	}
+    public void deleteByEmail(String name) {
+        repository.deleteByEmail(name);
+    }
 
 }

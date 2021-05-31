@@ -14,14 +14,16 @@ import com.example.repository.UserDataRipository;
 import com.example.repository.categoryEntityRepository;
 import com.example.repository.cityEntity;
 import com.example.repository.cityEntityRepository;
+import com.example.service.AccountService;
+import com.example.service.AccountUserDetails;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -37,6 +39,9 @@ public class controller {
 
 	@Autowired
 	UserDataRipository repository;
+
+	@Autowired
+	AccountService service;
 	
 // indexページの表示
 	@RequestMapping(value="/", method=RequestMethod.GET)
@@ -125,16 +130,14 @@ public class controller {
 
 
 // 退会ページの表示
-	@RequestMapping(value="/withd", method=RequestMethod.GET)
-	public ModelAndView withdrawalGet(ModelAndView mv) {
+	@RequestMapping(value="/deleteUser", method=RequestMethod.GET)
+	public ModelAndView withdrawalPOST(@AuthenticationPrincipal AccountUserDetails userDetails,ModelAndView mv) {
+		
+		String name = userDetails.getUsername();
+		service.deleteByEmail(name);
+
 		mv.setViewName("withdrawal"); 
-		return mv;
-	}
-	@RequestMapping(value="/withd", method=RequestMethod. POST)
-	public ModelAndView withdrawalPOST(@RequestParam("id") long id,ModelAndView mv) {
-		repository.deleteById(id);
-		mv.setViewName("withdrawal"); 
-		return mv;
+		return new ModelAndView("redirect:/");
 	}
 
 // プロフ変更ページ表示

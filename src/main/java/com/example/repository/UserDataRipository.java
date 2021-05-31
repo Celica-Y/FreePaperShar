@@ -10,5 +10,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserDataRipository extends JpaRepository<userData, Long>{
     public List<userData> findByPassword(String password);
-    // public List<userData> findByEmail(String Email);
+    public void deleteByEmail(String userName);
+    
 }
